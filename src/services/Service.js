@@ -188,7 +188,7 @@ const createRequest = (api, type) => {
 };
 
 const createSSO = apiSSO => {
-    console.log('---------------createSSO');
+    console.log('---------------createSSO------------------');
     apiSSO.interceptors.request.use(request => {
         request.headers = {
             'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'

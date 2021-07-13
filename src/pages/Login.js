@@ -37,6 +37,10 @@ export default function Login(props) {
     const [loading, setLoading] = useState(false);
     const [loginBiometria, setLoginBiometria] = useState(false);
 
+    useEffect(()=>{
+        console.log(">>>Login<<<", process.env.API_HOST_SSO)
+
+    },[]);
     function limparUsuario() {
         if (usuario.length >= 0) {
             setUsuario('')

@@ -5,6 +5,7 @@ import Background from "../pages/assets/img/background.png";
 import Theme from '../Theme'
 import { createIconSetFromIcoMoon } from "react-native-vector-icons";
 import icoMoonConfig from "../../selection.json";
+import Service from '../services/Service';
 
 const Linericon = createIconSetFromIcoMoon(
     icoMoonConfig,
@@ -12,11 +13,16 @@ const Linericon = createIconSetFromIcoMoon(
     "icomoon.ttf"
 );
 
-
-
 export default function TelaInicial(props) {
     const { navigation } = props;
-    const [texto, setTexto] = useState('Olá, \n  Seja bem-vindo \n ao ')
+    const [texto, setTexto] = useState('Olá, \n  Seja bem-vindo \n ao ');
+
+    
+    useEffect(()=>{
+        console.log(">>>TelaInicial<<<", process.env.API_HOST_SSO);
+        Service.createApis();
+    },[]);
+    
     return (
 
         <ImageBackground
