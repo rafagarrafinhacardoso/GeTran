@@ -12,6 +12,7 @@ import Auth from "../services/Auth";
 import * as Constants from "../config/constantes";
 import ServiceConfig from "../config/ServiceConfig";
 import Usuario from "../daos/Usuario";
+import Alert from "../helper/Alert";
 import qs from "qs";
 
 
@@ -37,10 +38,10 @@ export default function Login(props) {
     const [loading, setLoading] = useState(false);
     const [loginBiometria, setLoginBiometria] = useState(false);
 
-    useEffect(()=>{
+    useEffect(() => {
         console.log(">>>Login<<<", process.env.API_HOST_SSO)
 
-    },[]);
+    }, []);
     function limparUsuario() {
         if (usuario.length >= 0) {
             setUsuario('')
@@ -99,11 +100,10 @@ export default function Login(props) {
                         lembrar: Usuario.lembrar
                     }
                     Usuario.set(user);
-
-                    navigation.navigate("Auth");
+                    navigation.navigate("HomeLogado");
                 })
                 .catch((error) => {
-                    console.log(">>>>>>>>>>>>>>>>>>>>>>", error);
+                    console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>", error);
                     let erroMsg;
                     if (error == "Error: Request failed with status code 401") {
                         erroMsg = "Usuário e/ou senha inválidos.";
@@ -134,8 +134,6 @@ export default function Login(props) {
                 scope: Constants.SCOPE,
             });
 
-            console.log("----", data)
-
             Auth.logarSSO(data)
                 .then((response) => {
                     Usuario.token = response.data.access_token;
@@ -156,10 +154,11 @@ export default function Login(props) {
                     }
                     Usuario.set(user);
 
-                    //   navigation.navigate("Auth");
+                    navigation.navigate("HomeLogado");
+                    console.log('logado!')
                 })
                 .catch((error) => {
-                    console.log(error);
+                    console.log("--------",error);
                     let erroMsg;
                     if (error == "Error: Request failed with status code 401") {
                         erroMsg = "Usuário e/ou senha inválidos.";
@@ -245,7 +244,7 @@ export default function Login(props) {
                         textAlign: "center",
                     }}
                 >
-                    Login1
+                    Login
                 </Text>
             </View>
 
