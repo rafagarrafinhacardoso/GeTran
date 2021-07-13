@@ -2,12 +2,12 @@
 
 https://reactnative.dev/docs/environment-setup
 
-  Para instalar as dependencias:
-npm i
-
-  Para rodar a aplicação:
-npm start
-  No emulador:
-npm run android
-  ou
-npm run ios    (macOS only)
+  # Para instalar as dependencias:<br />
+npm i<br />
+<br />
+  # Para rodar a aplicação:<br />
+npm start<br />
+  ## No emulador:<br />
+npm run android<br />
+  ## ou<br />
+npm run ios    (macOS only)<br />
