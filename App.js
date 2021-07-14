@@ -5,11 +5,15 @@ import { createStackNavigator } from '@react-navigation/stack';
 import TelaInicial from './src/pages/TelaInicial';
 import Home from './src/pages/Home';
 import Login from './src/pages/Login';
+import FlashMessage from 'react-native-flash-message';
 
 
 function HomeDeslogado({ navigation }) {
   return (
-    <TelaInicial navigation={navigation} />
+    <View style={{ flex: 1 }}>
+      <TelaInicial navigation={navigation} />
+      <FlashMessage position="top" animated={true} />
+    </View>
   );
 }
 

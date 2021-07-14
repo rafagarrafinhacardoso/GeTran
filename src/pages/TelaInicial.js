@@ -5,6 +5,8 @@ import CnpjUtils from "../Utils/CnpjUtils";
 import CpfUtils from '../Utils/CpfUtils';
 import roadImage from "../pages/assets/img/road.jpg";
 import logoImage from "../pages/assets/img/logo-getran.png";
+import FlashMessage from "react-native-flash-message";
+import { showMessage, hideMessage } from "react-native-flash-message";
 import Theme from '../Theme'
 // import { createIconSetFromIcoMoon } from "react-native-vector-icons";
 import icoMoonConfig from "../../selection.json";
@@ -78,6 +80,8 @@ export default function TelaInicial(props) {
 
     return (
         <View style={styles.container} >
+
+
             <View style={styles.containeImage}>
                 <ImageBackground
                     style={{
@@ -98,6 +102,7 @@ export default function TelaInicial(props) {
                     />
                 </ImageBackground>
             </View>
+
             <View style={styles.containeFormMed}>
                 <Text style={{
                     fontSize: 18, color: "#000",
@@ -147,6 +152,15 @@ export default function TelaInicial(props) {
                     secureTextEntry={true}
                     onChangeText={(senha) => setSenha(senha)}
                 />
+                {
+                    showMessage({
+                        message: "Digite um CPF/CNPJ valido",
+                        // description: "Digite um CPF/CNPJ valido ",
+                        type: "danger",
+                        // backgroundColor: "purple", // background color
+                        // color: "#606060", // text color
+                    })
+                }
 
                 <TouchableOpacity
                     style={{
@@ -161,6 +175,16 @@ export default function TelaInicial(props) {
 
 
                     }}
+                    onPress={() => {
+                        /* HERE WE GONE SHOW OUR FIRST MESSAGE */
+                        showMessage({
+                            message: "Digite um CPF/CNPJ valido",
+                            // description: "Digite um CPF/CNPJ valido ",
+                            type: "danger",
+                            // backgroundColor: "purple", // background color
+                            // color: "#606060", // text color
+                        });
+                    }}
                 >
                     <Text style={{
                         // fontFamily: Theme.fonts.primaryBold,
@@ -171,6 +195,8 @@ export default function TelaInicial(props) {
                         marginTop: '4%',
                     }}>ENTRAR</Text>
                 </TouchableOpacity>
+
+
                 <View
                     style={{
                         width: '100%',
@@ -217,7 +243,7 @@ export default function TelaInicial(props) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
+        // backgroundColor: '#fff',
     },
     containeFormMed: {
         width: '100%',
