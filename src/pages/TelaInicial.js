@@ -5,14 +5,14 @@ import Background from "../pages/assets/img/background.png";
 import roadImage from "../pages/assets/img/road.jpg";
 import logoImage from "../pages/assets/img/logo-getran.png";
 import Theme from '../Theme'
-import { createIconSetFromIcoMoon } from "react-native-vector-icons";
+// import { createIconSetFromIcoMoon } from "react-native-vector-icons";
 import icoMoonConfig from "../../selection.json";
 import Service from '../services/Service';
-const Linericon = createIconSetFromIcoMoon(
-    icoMoonConfig,
-    "icomoon",
-    "icomoon.ttf"
-);
+// const Linericon = createIconSetFromIcoMoon(
+//     icoMoonConfig,
+//     "icomoon",
+//     "icomoon.ttf"
+// );
 
 export default function TelaInicial(props) {
     const { navigation } = props;
@@ -63,41 +63,13 @@ export default function TelaInicial(props) {
                         Sistema de Gestão {"\n"}de Trânsito do DF
                         {"\n"}
                     </Text>
-                    {/* <Text
-                        style={{
-                            color: "#000",
-                        }}
-                    >Digite seu CPF para iniciar o cadastro no aplicativo do GETRAN DF
-                    </Text> */}
-                    <View
-                        style={{
-                            flex: 1,
-                            justifyContent: "center",
-                            // paddingHorizontal: 10,
-                            // width: '100%',
-                            // flexDirection: 'row',
-                            // alignItems: 'center',
-                            // justifyContent: 'space-between',
-                            // top: 20,
-                            // marginTop: 17,
-                            // marginBottom: 40
-                        }}
-                    >
+
+                    <View>
                         <TouchableOpacity
                             onPress={() => navigation.navigate("Login")}
                             style={{
-                                // height: 40,
-                                // width: 230,
-                                // paddingLeft: 120,
-                                // paddingRight: 120,
-                                // borderRadius: 4,
-                                // borderWidth: 1,
-                                // borderColor: '#FFA015',
-                                // alignItems: 'center',
-                                // justifyContent: 'center',
-                                // marginRight: 30,
                                 alignItems: "center",
-                                backgroundColor: "#0077ff", //#0077ff;
+                                backgroundColor: "#0077ff",
                                 padding: 10,
                                 paddingHorizontal: 160,
                             }}
@@ -106,22 +78,42 @@ export default function TelaInicial(props) {
                                 // fontFamily: Theme.fonts.primaryBold,
                                 fontSize: 14,
                                 color: "#fff",
-                                
                             }}>ENTRAR</Text>
                         </TouchableOpacity>
-                        {/* <TouchableOpacity
-                            // disabled={errorCpfCnpj || !senha}
-                            // style={(!errorCpfCnpj && senha)
-                            //     ? { height: 40, borderRadius: 4, backgroundColor: '#FFA015', paddingLeft: 40, paddingRight: 40, alignItems: 'center', justifyContent: 'center' }
-                            //     : { height: 40, borderRadius: 4, backgroundColor: 'grey', paddingLeft: 40, paddingRight: 40, alignItems: 'center', justifyContent: 'center' }
-                            // } onPress={() => acessarSSO()}
-                            >
+                    </View>
+                    <View
+                        style={{
+                            flexDirection: "row",
+                        }}
+                    >
+                        <TouchableOpacity
+                            // onPress={() => navigation.navigate("Login")}
+                            style={{
+                                paddingTop: 10,
+                            }}
+                        >
                             <Text style={{
                                 // fontFamily: Theme.fonts.primaryBold,
                                 fontSize: 14,
-                                color: "#F0f",
-                            }}>ENTRAR</Text>
-                        </TouchableOpacity> */}
+                                color: "#000",
+                                fontWeight: "bold",
+                            }}>PRIMEIRO ACESSO</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            // onPress={() => navigation.navigate("Login")}
+                            style={{
+                                alignItems: "center",
+                                padding: 10,
+                                paddingLeft: 150,
+                            }}
+                        >
+                            <Text style={{
+                                // fontFamily: Theme.fonts.primaryBold,
+                                fontSize: 14,
+                                color: "#000",
+                                fontWeight: "bold",
+                            }}>MAIS OPÇÕES</Text>
+                        </TouchableOpacity>
                     </View>
                 </Text>
             </View>
