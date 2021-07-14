@@ -17,7 +17,6 @@ function Logar({ navigation }) {
   );
 }
 
-
 function DetailsScreen() {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
