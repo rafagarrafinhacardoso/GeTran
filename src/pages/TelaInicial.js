@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState, useEffect } from "react";
-import { ImageBackground, Platform, StyleSheet, Text, TouchableOpacity, View, Image } from 'react-native';
+import { ImageBackground, Platform, StyleSheet, Text, TouchableOpacity, View, Image, TextInput } from 'react-native';
 import Background from "../pages/assets/img/background.png";
 import roadImage from "../pages/assets/img/road.jpg";
 import logoImage from "../pages/assets/img/logo-getran.png";
@@ -47,77 +47,118 @@ export default function TelaInicial(props) {
                 </ImageBackground>
             </View>
             <View style={styles.containeFormMed}>
-                <Text
+                <Text style={{
+                    fontSize: 18, color: "#000",
+                    fontWeight: "bold",
+                    fontFamily: 'din-medium'
+                }}>Sistema de Gestão{'\n'}de Trânsito do DF</Text>
+
+
+                <TextInput
+                    selectionColor={'black'}
+                    theme={{ colors: { text: '#8E9BA2', primary: '#fff' } }}
+                    underlineColor='#fff'
                     style={{
-                        // fontFamily: "Cochin"
+                        width: '100%',
+                        height: 48,
+                        paddingLeft: 15,
+                        fontSize: 16,
+                        letterSpacing: 1,
+                        borderColor: '#181926',
+                        borderWidth: 2,
+                        borderRadius: 3,
+                        marginTop: 10
+                    }}
+                    placeholder='DIGITE SEU CPF'
+                    // value={usuario || ''}
+                    keyboardType={"numeric"}
+                // onChangeText={(usuario) => handlechange(usuario)}
+                />
+
+                <TextInput
+                    selectionColor={'black'}
+                    theme={{ colors: { text: '#8E9BA2', primary: '#fff' } }}
+                    underlineColor='#fff'
+                    style={{
+                        width: '100%',
+                        height: 48,
+                        paddingLeft: 15,
+                        fontSize: 16,
+                        letterSpacing: 1,
+                        borderColor: '#181926',
+                        borderWidth: 2,
+                        borderRadius: 3,
+                        marginTop: 10
+                    }}
+                    placeholder='SENHA'
+                // value={usuario || ''}
+                // keyboardType={"numeric"}
+                // onChangeText={(usuario) => handlechange(usuario)}
+                />
+
+                <TouchableOpacity
+                    style={{
+                        width: '100%',
+                        height: 48,
+                        backgroundColor: '#0077ff',
+                        marginTop: 10,
+                        letterSpacing: 2,
+                        borderRadius: 3,
+                        alignItems: 'center',
+                        alignSelf: 'center'
+
+
                     }}
                 >
-                    <Text
+                    <Text style={{
+                        // fontFamily: Theme.fonts.primaryBold,
+                        fontSize: 14,
+                        color: "#FFf",
+                        alignItems: 'center',
+                        alignSelf: 'center',
+                        marginTop: '4%',
+                    }}>ENTRAR</Text>
+                </TouchableOpacity>
+                <View
+                    style={{
+                        width: '100%',
+                        height: 48,
+                        flexDirection: "row",
+                        justifyContent: 'space-between',
+                        backgroundColor: '#fff',
+                    }}
+                >
+                    <TouchableOpacity
+                        // onPress={() => navigation.navigate("Login")}
                         style={{
-                            fontSize: 20,
-                            fontWeight: "bold",
+                            paddingTop: 10,
+                        }}
+                    >
+                        <Text style={{
+                            // fontFamily: Theme.fonts.primaryBold,
+                            fontSize: 14,
                             color: "#000",
-                        }}
-                    >
-
-                        Sistema de Gestão {"\n"}de Trânsito do DF
-                        {"\n"}
-                    </Text>
-
-                    <View>
-                        <TouchableOpacity
-                            onPress={() => navigation.navigate("Login")}
-                            style={{
-                                alignItems: "center",
-                                backgroundColor: "#0077ff",
-                                padding: 10,
-                                paddingHorizontal: 160,
-                            }}
-                        >
-                            <Text style={{
-                                // fontFamily: Theme.fonts.primaryBold,
-                                fontSize: 14,
-                                color: "#fff",
-                            }}>ENTRAR</Text>
-                        </TouchableOpacity>
-                    </View>
-                    <View
+                            fontWeight: "bold",
+                        }}>PRIMEIRO ACESSO</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        // onPress={() => navigation.navigate("Login")}
                         style={{
-                            flexDirection: "row",
+                            padding: 10,
+                            paddingEnd: 0
                         }}
                     >
-                        <TouchableOpacity
-                            // onPress={() => navigation.navigate("Login")}
-                            style={{
-                                paddingTop: 10,
-                            }}
-                        >
-                            <Text style={{
-                                // fontFamily: Theme.fonts.primaryBold,
-                                fontSize: 14,
-                                color: "#000",
-                                fontWeight: "bold",
-                            }}>PRIMEIRO ACESSO</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity
-                            // onPress={() => navigation.navigate("Login")}
-                            style={{
-                                alignItems: "center",
-                                padding: 10,
-                                paddingLeft: 150,
-                            }}
-                        >
-                            <Text style={{
-                                // fontFamily: Theme.fonts.primaryBold,
-                                fontSize: 14,
-                                color: "#000",
-                                fontWeight: "bold",
-                            }}>MAIS OPÇÕES</Text>
-                        </TouchableOpacity>
-                    </View>
-                </Text>
+                        <Text style={{
+                            // fontFamily: Theme.fonts.primaryBold,
+                            fontSize: 14,
+                            color: "#000",
+                            fontWeight: "bold",
+                            textAlign: 'right'
+                        }}>MAIS OPÇÕES</Text>
+                    </TouchableOpacity>
+                </View>
             </View>
-        </View>
+        </View >
     );
 }
 
@@ -127,10 +168,13 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
     },
     containeFormMed: {
-        marginTop: 10,
-        margin: 20,
-        position: "relative",
-        flexDirection: "row",
+        width: '100%',
+        height: 320,
+        backgroundColor: '#fff',
+        position: 'absolute',
+        bottom: 0,
+        overflow: 'hidden',
+        padding: 15,
     },
     containeImage: {
         position: "relative",
