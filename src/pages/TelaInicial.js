@@ -1,7 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState, useEffect } from "react";
 import { ImageBackground, Platform, StyleSheet, Text, TouchableOpacity, View, Image, TextInput } from 'react-native';
-import Background from "../pages/assets/img/background.png";
+import CnpjUtils from "../Utils/CnpjUtils";
+import CpfUtils from '../Utils/CpfUtils';
 import roadImage from "../pages/assets/img/road.jpg";
 import logoImage from "../pages/assets/img/logo-getran.png";
 import Theme from '../Theme'
@@ -16,6 +17,12 @@ import Service from '../services/Service';
 
 export default function TelaInicial(props) {
     const { navigation } = props;
+    const [usuario, setUsuario] = useState();
+    const [usernameBiometria, setUsernameBiometria] = useState();
+    const [senha, setSenha] = useState(null);
+    const [errorCpf, setErrorCpf] = useState(false);
+    // const [usernameBiometria, setUsernameBiometria] = useState();
+
     // const [texto, setTexto] = useState('Olá, \n  Seja bem-vindo \n ao ');
 
 
@@ -23,6 +30,51 @@ export default function TelaInicial(props) {
         console.log(">>>TelaInicial<<<", process.env.API_HOST_SSO);
         Service.createApis();
     }, []);
+
+
+    const handlechange = (e) => {
+        const doc = mascaraDocumento(e);
+        console.log(e);
+        // setUsernameBiometria(doc);
+
+        setUsuario(doc);
+        if (e.length > 14) {
+            digitaCPF(e, false)
+        } else {
+            digitaCPF(e, true)
+        }
+    }
+
+    const digitaCPF = (cpf, isCpf) => {
+        if (isCpf) {
+            if (CpfUtils.validateCpf(cpf)) {
+                // setState({ errorCpf: false })
+                setErrorCpf(false);
+            } else {
+                setErrorCpf(true);
+                // setState({ errorCpf: true })
+            }
+        } else {
+            if (CnpjUtils.validateCnpj(cpf)) {
+                // setState({ errorCpf: false });
+                setErrorCpf(false);
+            } else {
+                // setState({ errorCpf: true });
+                setErrorCpf(true);
+            }
+        }
+    }
+
+    const mascaraDocumento = (documento) => {
+        let doc = documento?.replace(/\D/g, "") || '';
+        let masked = doc;
+        if (doc?.length > 11) {
+            masked = CnpjUtils.maskCnpj(doc);
+        } else {
+            masked = CpfUtils.maskCpf(doc);
+        }
+        return masked;
+    }
 
     return (
         <View style={styles.container} >
@@ -50,7 +102,6 @@ export default function TelaInicial(props) {
                 <Text style={{
                     fontSize: 18, color: "#000",
                     fontWeight: "bold",
-                    fontFamily: 'din-medium'
                 }}>Sistema de Gestão{'\n'}de Trânsito do DF</Text>
 
 
@@ -70,9 +121,9 @@ export default function TelaInicial(props) {
                         marginTop: 10
                     }}
                     placeholder='DIGITE SEU CPF'
-                    // value={usuario || ''}
+                    value={usuario || ''}
                     keyboardType={"numeric"}
-                // onChangeText={(usuario) => handlechange(usuario)}
+                    onChangeText={(usuario) => handlechange(usuario)}
                 />
 
                 <TextInput
@@ -91,9 +142,10 @@ export default function TelaInicial(props) {
                         marginTop: 10
                     }}
                     placeholder='SENHA'
-                // value={usuario || ''}
-                // keyboardType={"numeric"}
-                // onChangeText={(usuario) => handlechange(usuario)}
+                    autoCorrect={false}
+                    autoCapitalize="none"
+                    secureTextEntry={true}
+                    onChangeText={(senha) => setSenha(senha)}
                 />
 
                 <TouchableOpacity
