@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { Button, View, Text } from 'react-native';
+import { Button, View, Text, TouchableOpacity } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import TelaInicial from './src/pages/TelaInicial';
+import PrimeiroAcesso from './src/pages/PrimeiroAcesso';
 import Home from './src/pages/Home';
-import Login from './src/pages/Login';
 import FlashMessage from 'react-native-flash-message';
 
 
@@ -24,20 +24,26 @@ function HomeLogado({ navigation }) {
 }
 
 
-function Logar({ navigation }) {
-  return (
-    <Login navigation={navigation} />
-  );
-}
 
-function DetailsScreen() {
+
+function DetailsScreen({ navigation }) {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Details Sc2reen</Text>
+      <TouchableOpacity onPress={() => navigation.navigate("Home")}>
+        <Text >Home</Text>
+      </TouchableOpacity>
     </View>
   );
 }
-
+function PriAcesso({ navigation }) {
+  return (
+    <View style={{ flex: 1 }}>
+      <PrimeiroAcesso navigation={navigation} />
+      <FlashMessage position="top" animated={true} />
+    </View>
+    
+  );
+}
 const Stack = createStackNavigator();
 
 function App() {
@@ -45,9 +51,9 @@ function App() {
     <NavigationContainer  >
       <Stack.Navigator initialRouteName="Home" screenOptions={{ headerShown: false }} >
         <Stack.Screen name="Home" component={HomeDeslogado} />
-        <Stack.Screen name="Login" component={Logar} />
         <Stack.Screen name="Details" component={DetailsScreen} />
         <Stack.Screen name="HomeLogado" component={HomeLogado} />
+        <Stack.Screen name="PrimeiroAcesso" component={PriAcesso} />
       </Stack.Navigator>
     </NavigationContainer>
   );

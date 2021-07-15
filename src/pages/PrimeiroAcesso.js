@@ -17,11 +17,11 @@ import Service from '../services/Service';
 //     "icomoon.ttf"
 // );
 
-export default function TelaInicial(props) {
+export default function PrimeiroAcesso(props) {
     const { navigation } = props;
     const [usuario, setUsuario] = useState();
-    const [usernameBiometria, setUsernameBiometria] = useState();
-    const [senha, setSenha] = useState(null);
+    // const [usernameBiometria, setUsernameBiometria] = useState();
+    // const [senha, setSenha] = useState(null);
     const [errorCpf, setErrorCpf] = useState(false);
     // const [usernameBiometria, setUsernameBiometria] = useState();
 
@@ -105,9 +105,11 @@ export default function TelaInicial(props) {
 
             <View style={styles.containeFormMed}>
                 <Text style={styles.textTitulo}>
-                    Sistema de Gestão{'\n'}de Trânsito do DF
+                    Primeiro Acesso
                 </Text>
-
+                <Text style={styles.textDescricao}>
+                    Digite seu CPF para iniciar o cadastro no aplicativo do GETRAN DF
+                </Text>
 
                 <TextInput
                     selectionColor={'black'}
@@ -118,18 +120,6 @@ export default function TelaInicial(props) {
                     value={usuario || ''}
                     keyboardType={"numeric"}
                     onChangeText={(usuario) => handlechange(usuario)}
-                />
-
-                <TextInput
-                    selectionColor={'black'}
-                    // theme={{ colors: { text: '#8E9BA2', primary: '#fff' } }}
-                    // underlineColor='#fff'
-                    style={styles.textInp}
-                    placeholder='SENHA'
-                    autoCorrect={false}
-                    autoCapitalize="none"
-                    secureTextEntry={true}
-                    onChangeText={(senha) => setSenha(senha)}
                 />
                 {
                     showMessage({
@@ -145,51 +135,24 @@ export default function TelaInicial(props) {
                     style={styles.buttonPrimary}
                     onPress={() => {
                         /* HERE WE GONE SHOW OUR FIRST MESSAGE */
+                        console.log("---------------------->OI")
                         showMessage({
                             message: "Digite um CPF/CNPJ valido",
                             // description: "Digite um CPF/CNPJ valido ",
                             type: "danger",
                             // backgroundColor: "purple", // background color
-                            // color: "#606060", // text color
+                            // color: "#606060", 
                         });
                     }}
                 >
-                    <Text style={styles.textButtonPrimary}>ENTRAR</Text>
+                    <Text style={styles.textButtonPrimary}>INICIAR CADASTRO</Text>
                 </TouchableOpacity>
-
-
-                <View
-                    style={styles.containeTwoButtonText}
+                <TouchableOpacity
+                    style={styles.buttonSecondary}
+                    onPress={() => navigation.navigate("Home")}
                 >
-                    <TouchableOpacity
-                        onPress={() => navigation.navigate("PrimeiroAcesso")}
-                        style={{
-                            paddingTop: 10,
-                        }}
-                    >
-                        <Text style={{
-                            // fontFamily: Theme.fonts.primaryBold,
-                            fontSize: 14,
-                            color: "#000",
-                            fontWeight: "bold",
-                        }}>PRIMEIRO ACESSO</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        // onPress={() => navigation.navigate("Login")}
-                        style={{
-                            padding: 10,
-                            paddingEnd: 0
-                        }}
-                    >
-                        <Text style={{
-                            // fontFamily: Theme.fonts.primaryBold,
-                            fontSize: 14,
-                            color: "#000",
-                            fontWeight: "bold",
-                            textAlign: 'right'
-                        }}>MAIS OPÇÕES</Text>
-                    </TouchableOpacity>
-                </View>
+                    <Text style={styles.textButtonPrimary}>VOLTAR</Text>
+                </TouchableOpacity>
             </View>
         </View >
     );
@@ -215,9 +178,14 @@ const styles = StyleSheet.create({
         height: "70%",
     },
     textTitulo: {
-        fontSize: 18,
+        fontSize: 26,
         color: "#000",
         fontWeight: "bold",
+    },
+    textDescricao: {
+        fontSize: 15,
+        color: "#000",
+        fontWeight: "normal",
     },
     textInp: {
         width: '100%',
@@ -228,7 +196,9 @@ const styles = StyleSheet.create({
         borderColor: '#181926',
         borderWidth: 2,
         borderRadius: 3,
-        marginTop: 10
+        marginTop: 10,
+        fontWeight: 'bold',
+        color: '#181926'
     },
     buttonPrimary: {
         width: '100%',
@@ -240,12 +210,24 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         alignSelf: 'center'
     },
+    buttonSecondary: {
+        width: '100%',
+        height: 48,
+        backgroundColor: '#181926',
+        marginTop: 10,
+        letterSpacing: 2,
+        borderRadius: 3,
+        alignItems: 'center',
+        alignSelf: 'center'
+    },
     textButtonPrimary: {
-        fontSize: 14,
+        fontSize: 16,
         color: "#FFf",
         alignItems: 'center',
         alignSelf: 'center',
         marginTop: '4%',
+        fontWeight: 'bold',
+        letterSpacing: 2,
     },
     containeTwoButtonText: {
         width: '100%',
