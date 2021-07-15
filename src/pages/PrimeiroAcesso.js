@@ -121,7 +121,7 @@ export default function PrimeiroAcesso(props) {
                     keyboardType={"numeric"}
                     onChangeText={(usuario) => handlechange(usuario)}
                 />
-                {
+                {/* {
                     showMessage({
                         message: "Digite um CPF/CNPJ valido",
                         // description: "Digite um CPF/CNPJ valido ",
@@ -129,7 +129,7 @@ export default function PrimeiroAcesso(props) {
                         // backgroundColor: "purple", // background color
                         // color: "#606060", // text color
                     })
-                }
+                } */}
 
                 <TouchableOpacity
                     style={styles.buttonPrimary}
@@ -149,7 +149,9 @@ export default function PrimeiroAcesso(props) {
                 </TouchableOpacity>
                 <TouchableOpacity
                     style={styles.buttonSecondary}
-                    onPress={() => navigation.navigate("Home")}
+                    onPress={() => navigation.setParams({
+                        primAcess: false
+                    })}
                 >
                     <Text style={styles.textButtonPrimary}>VOLTAR</Text>
                 </TouchableOpacity>

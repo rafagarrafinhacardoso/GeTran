@@ -8,10 +8,16 @@ import Home from './src/pages/Home';
 import FlashMessage from 'react-native-flash-message';
 
 
-function HomeDeslogado({ navigation }) {
+function HomeDeslogado({ route, navigation }) {
+  const { primAcess } = route.params;
   return (
     <View style={{ flex: 1 }}>
-      <TelaInicial navigation={navigation} />
+      {!primAcess &&
+        <TelaInicial navigation={navigation} />
+      }
+      {primAcess &&
+        <PrimeiroAcesso navigation={navigation} />
+      }
       <FlashMessage position="top" animated={true} />
     </View>
   );
@@ -35,15 +41,7 @@ function DetailsScreen({ navigation }) {
     </View>
   );
 }
-function PriAcesso({ navigation }) {
-  return (
-    <View style={{ flex: 1 }}>
-      <PrimeiroAcesso navigation={navigation} />
-      <FlashMessage position="top" animated={true} />
-    </View>
-    
-  );
-}
+
 const Stack = createStackNavigator();
 
 function App() {
@@ -53,7 +51,6 @@ function App() {
         <Stack.Screen name="Home" component={HomeDeslogado} />
         <Stack.Screen name="Details" component={DetailsScreen} />
         <Stack.Screen name="HomeLogado" component={HomeLogado} />
-        <Stack.Screen name="PrimeiroAcesso" component={PriAcesso} />
       </Stack.Navigator>
     </NavigationContainer>
   );
