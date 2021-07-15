@@ -175,7 +175,7 @@ export default function TelaInicial(props) {
                         }}>PRIMEIRO ACESSO</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
-                        // onPress={() => navigation.navigate("Login")}
+                         onPress={() => navigation.navigate("MaisOpcoes")}
                         style={{
                             padding: 10,
                             paddingEnd: 0
