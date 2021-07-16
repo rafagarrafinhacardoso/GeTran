@@ -36,37 +36,40 @@ export default function TelaInicial(props) {
 
     const handlechange = (e) => {
         const doc = mascaraDocumento(e);
-        console.log(e);
-        // setUsernameBiometria(doc);
-
         setUsuario(doc);
-        if (e.length > 14) {
-            digitaCPF(e, false)
+        console.log("handlechange :", doc);
+        if (doc.length == 18) {
+            digitaCPF(doc, false)
+        } else if (doc.length == 14) {
+            digitaCPF(doc, true)
         } else {
-            digitaCPF(e, true)
+            setErrorCpf(true);
         }
     }
-
+    const handleLostFocus = (e) => {
+        console.log("handleLostFocus------>>>> errorCpf: ", errorCpf);
+        if (errorCpf) {
+            showMessage({
+                message: "Digite um CPF/CNPJ valido",
+                type: "danger",
+            });
+        }
+    }
     const digitaCPF = (cpf, isCpf) => {
         if (isCpf) {
             if (CpfUtils.validateCpf(cpf)) {
-                // setState({ errorCpf: false })
                 setErrorCpf(false);
             } else {
                 setErrorCpf(true);
-                // setState({ errorCpf: true })
             }
         } else {
             if (CnpjUtils.validateCnpj(cpf)) {
-                // setState({ errorCpf: false });
                 setErrorCpf(false);
             } else {
-                // setState({ errorCpf: true });
                 setErrorCpf(true);
             }
         }
     }
-
     const mascaraDocumento = (documento) => {
         let doc = documento?.replace(/\D/g, "") || '';
         let masked = doc;
@@ -76,6 +79,15 @@ export default function TelaInicial(props) {
             masked = CpfUtils.maskCpf(doc);
         }
         return masked;
+    }
+    const onClickIniciarCadastro = () => {
+        console.log("Iniciar Cadastro -> CPF/CNPJ valido ? ", !errorCpf);
+        if (errorCpf) {
+            showMessage({
+                message: "Digite um CPF/CNPJ valido",
+                type: "danger",
+            });
+        }
     }
 
     return (
@@ -111,19 +123,16 @@ export default function TelaInicial(props) {
 
                 <TextInput
                     selectionColor={'black'}
-                    // theme={{ colors: { text: '#ffffA2', primary: '#f0f' } }}
-                    // underlineColor='#f0f'
                     style={styles.textInp}
                     placeholder='DIGITE SEU CPF'
                     value={usuario || ''}
                     keyboardType={"numeric"}
                     onChangeText={(usuario) => handlechange(usuario)}
+                    onBlur={(a) => handleLostFocus(a)}
                 />
 
                 <TextInput
                     selectionColor={'black'}
-                    // theme={{ colors: { text: '#8E9BA2', primary: '#fff' } }}
-                    // underlineColor='#fff'
                     style={styles.textInp}
                     placeholder='SENHA'
                     autoCorrect={false}
@@ -131,29 +140,10 @@ export default function TelaInicial(props) {
                     secureTextEntry={true}
                     onChangeText={(senha) => setSenha(senha)}
                 />
-                {/* {
-                    showMessage({
-                        message: "Digite um CPF/CNPJ valido",
-                        // description: "Digite um CPF/CNPJ valido ",
-                        type: "danger",
-                        // backgroundColor: "purple", // background color
-                        // color: "#606060", // text color
-                    })
-                } */}
 
                 <TouchableOpacity
                     style={styles.buttonPrimary}
-                    onPress={() => {
-                        /* HERE WE GONE SHOW OUR FIRST MESSAGE */
-                        console.log("Entrar --------------->", navigation)
-                        showMessage({
-                            message: "Digite um CPF/CNPJ valido",
-                            // description: "Digite um CPF/CNPJ valido ",
-                            type: "danger",
-                            // backgroundColor: "purple", // background color
-                            // color: "#606060", // text color
-                        });
-                    }}
+                    onPress={() => onClickIniciarCadastro()}
                 >
                     <Text style={styles.textButtonPrimary}>ENTRAR</Text>
                 </TouchableOpacity>

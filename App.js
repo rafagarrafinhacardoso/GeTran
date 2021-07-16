@@ -7,7 +7,6 @@ import PrimeiroAcesso from './src/pages/PrimeiroAcesso';
 import Home from './src/pages/Home';
 import FlashMessage from 'react-native-flash-message';
 
-
 function HomeDeslogado({ route, navigation }) {
   const { primAcess } = route.params;
   return (
@@ -18,7 +17,7 @@ function HomeDeslogado({ route, navigation }) {
       {primAcess &&
         <PrimeiroAcesso navigation={navigation} />
       }
-      <FlashMessage position="top" animated={true} />
+      <FlashMessage position="bottom" animated={true} />
     </View>
   );
 }
@@ -28,9 +27,6 @@ function HomeLogado({ navigation }) {
     <Home navigation={navigation} />
   );
 }
-
-
-
 
 function DetailsScreen({ navigation }) {
   return (
@@ -48,7 +44,7 @@ function App() {
   return (
     <NavigationContainer  >
       <Stack.Navigator initialRouteName="Home" screenOptions={{ headerShown: false }} >
-        <Stack.Screen name="Home" component={HomeDeslogado} />
+        <Stack.Screen name="Home" component={HomeDeslogado} initialParams={{ primAcess: false }} />
         <Stack.Screen name="Details" component={DetailsScreen} />
         <Stack.Screen name="HomeLogado" component={HomeLogado} />
       </Stack.Navigator>
