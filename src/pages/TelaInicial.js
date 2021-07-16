@@ -145,6 +145,8 @@ export default function TelaInicial(props) {
                     style={styles.buttonPrimary}
                     onPress={() => {
                         /* HERE WE GONE SHOW OUR FIRST MESSAGE */
+                        
+                        navigation.navigate("HomeLogado");
                         showMessage({
                             message: "Digite um CPF/CNPJ valido",
                             // description: "Digite um CPF/CNPJ valido ",

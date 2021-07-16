@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import TelaInicial from './src/pages/TelaInicial';
 import PrimeiroAcesso from './src/pages/PrimeiroAcesso';
+import HomeLogado from './src/pages/HomeLogado';
 import Home from './src/pages/Home';
 import FlashMessage from 'react-native-flash-message';
 
@@ -17,9 +18,13 @@ function HomeDeslogado({ navigation }) {
   );
 }
 
-function HomeLogado({ navigation }) {
+function Logado({ navigation }) {
   return (
-    <Home navigation={navigation} />
+    <View style={{ flex: 1 }}>
+    <HomeLogado navigation={navigation} />
+    <FlashMessage position="top" animated={true} />
+  </View>
+    
   );
 }
 
@@ -52,8 +57,9 @@ function App() {
       <Stack.Navigator initialRouteName="Home" screenOptions={{ headerShown: false }} >
         <Stack.Screen name="Home" component={HomeDeslogado} />
         <Stack.Screen name="Details" component={DetailsScreen} />
-        <Stack.Screen name="HomeLogado" component={HomeLogado} />
+        <Stack.Screen name="HomeLogado" component={Logado} />
         <Stack.Screen name="PrimeiroAcesso" component={PriAcesso} />
+        <Stack.Screen name="Logado" component={PriAcesso} />
       </Stack.Navigator>
     </NavigationContainer>
   );
