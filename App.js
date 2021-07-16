@@ -29,6 +29,12 @@ function HomeLogado({ navigation }) {
   );
 }
 
+function MaisOpts({ navigation }) {
+  return (
+    <MaisOpcoes navigation={navigation} />
+  );
+}
+
 function DetailsScreen({ navigation }) {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
@@ -47,6 +53,7 @@ function App() {
         <Stack.Screen name="Home" component={HomeDeslogado} initialParams={{ primAcess: false }} />
         <Stack.Screen name="Details" component={DetailsScreen} />
         <Stack.Screen name="HomeLogado" component={HomeLogado} />
+        <Stack.Screen name="MaisOpcoes" component={MaisOpts} />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -37,7 +37,7 @@ export default function TelaInicial(props) {
 
     useEffect(() => {
         console.log("------------>>>TelaInicial<<<", Service.apiSSO);
-        if(Service.apiSSO == null){
+        if (Service.apiSSO == null) {
             Service.createApis();
         }
     }, []);
@@ -161,7 +161,13 @@ export default function TelaInicial(props) {
             //         });
             // } else {
             var jwtDecode = require("jwt-decode");
-
+            if (!usuario) {
+                showMessage({
+                    message: "Digite um CPF/CNPJ",
+                    type: "danger",
+                });
+                return;
+            } 
             const data = qs.stringify({
                 grant_type: Constants.GRANT_TYPE,
                 username: usuario
@@ -295,7 +301,7 @@ export default function TelaInicial(props) {
                         }}>PRIMEIRO ACESSO</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
-                         onPress={() => navigation.navigate("MaisOpcoes")}
+                        onPress={() => navigation.navigate("MaisOpcoes")}
                         style={{
                             padding: 10,
                             paddingEnd: 0
