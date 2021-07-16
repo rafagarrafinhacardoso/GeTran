@@ -59,7 +59,6 @@ function App() {
         <Stack.Screen name="Details" component={DetailsScreen} />
         <Stack.Screen name="HomeLogado" component={Logado} />
         <Stack.Screen name="PrimeiroAcesso" component={PriAcesso} />
-        <Stack.Screen name="Logado" component={PriAcesso} />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -24,7 +24,7 @@ export default function Home(props) {
 
 
                 style={{ height: 40, borderRadius: 4, backgroundColor: '#FFA015', paddingLeft: 40, paddingRight: 40, alignItems: 'center', justifyContent: 'center' }} 
-                onPress={() => navigation.navigate("Login")}
+                onPress={() => navigation.navigate("Home")}
                 >
                 <Text style={{
                     // fontFamily: Theme.fonts.primaryBold,
