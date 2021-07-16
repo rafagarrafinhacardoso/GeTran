@@ -131,7 +131,7 @@ export default function TelaInicial(props) {
                     secureTextEntry={true}
                     onChangeText={(senha) => setSenha(senha)}
                 />
-                {
+                {/* {
                     showMessage({
                         message: "Digite um CPF/CNPJ valido",
                         // description: "Digite um CPF/CNPJ valido ",
@@ -139,12 +139,13 @@ export default function TelaInicial(props) {
                         // backgroundColor: "purple", // background color
                         // color: "#606060", // text color
                     })
-                }
+                } */}
 
                 <TouchableOpacity
                     style={styles.buttonPrimary}
                     onPress={() => {
                         /* HERE WE GONE SHOW OUR FIRST MESSAGE */
+                        console.log("Entrar --------------->", navigation)
                         showMessage({
                             message: "Digite um CPF/CNPJ valido",
                             // description: "Digite um CPF/CNPJ valido ",
@@ -162,7 +163,9 @@ export default function TelaInicial(props) {
                     style={styles.containeTwoButtonText}
                 >
                     <TouchableOpacity
-                        onPress={() => navigation.navigate("PrimeiroAcesso")}
+                        onPress={() => navigation.setParams({
+                            primAcess: true
+                        })}
                         style={{
                             paddingTop: 10,
                         }}
