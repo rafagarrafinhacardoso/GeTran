@@ -11,6 +11,12 @@ import Theme from '../Theme'
 // import { createIconSetFromIcoMoon } from "react-native-vector-icons";
 import icoMoonConfig from "../../selection.json";
 import Service from '../services/Service';
+import Auth from "../services/Auth";
+import * as Constants from "../config/constantes";
+import ServiceConfig from "../config/ServiceConfig";
+import Usuario from "../daos/Usuario";
+import Alert from "../helper/Alert";
+import qs from "qs";
 // const Linericon = createIconSetFromIcoMoon(
 //     icoMoonConfig,
 //     "icomoon",
@@ -23,6 +29,7 @@ export default function TelaInicial(props) {
     const [usernameBiometria, setUsernameBiometria] = useState();
     const [senha, setSenha] = useState(null);
     const [errorCpf, setErrorCpf] = useState(false);
+    // const [loading, setLoading] = useState(false);
     // const [usernameBiometria, setUsernameBiometria] = useState();
 
     // const [texto, setTexto] = useState('Olá, \n  Seja bem-vindo \n ao ');
@@ -80,16 +87,134 @@ export default function TelaInicial(props) {
         }
         return masked;
     }
-    const onClickIniciarCadastro = () => {
+    const onClickIniciarCadastro = (pass) => {
         console.log("Iniciar Cadastro -> CPF/CNPJ valido ? ", !errorCpf);
         if (errorCpf) {
             showMessage({
                 message: "Digite um CPF/CNPJ valido",
                 type: "danger",
             });
+        } else {
+            // setLoading(true);
+
+            // if (loginBiometria) {
+            //     // Decrypt
+            //     var CryptoJS = require("crypto-js");
+
+            //     if (hashPassword) {
+            //         var bytes = CryptoJS.AES.decrypt(hashPassword.toString(), 'password');
+            //         senha = bytes.toString(CryptoJS.enc.Utf8);
+            //     }
+
+            //     var jwtDecode = require("jwt-decode");
+
+            //     const data = qs.stringify({
+            //         grant_type: Constants.GRANT_TYPE,
+            //         username: usernameBiometria
+            //             .replace(/\D/g, ""),
+            //         password: pass ? pass : senha,
+            //         client_id: Constants.CLIENT_ID,
+            //         client_secret: ServiceConfig.clientSecret,
+            //         scope: Constants.SCOPE,
+            //     });
+            //     console.log('>>>>acessarSSO<<<<<')
+            //     Auth.logarSSO(data)
+            //         .then((response) => {
+            //             Usuario.token = response.data.access_token;
+            //             Usuario.refresh_token = response.data.refresh_token;
+            //             Usuario.username = usernameBiometria
+            //                 .replace(/\D/g, "");
+            //             Usuario.password = senha;
+            //             var decoded = jwtDecode(response.data.access_token);
+            //             Usuario.roles = decoded.realm_access.roles;
+            //             // this.setState({ loading: false }
+            //             // setLoading(false);
+            //             let user = {
+            //                 cpf: Usuario.cpf,
+            //                 userName: usernameBiometria,
+            //                 password: pass ? pass : senha,
+            //                 lembrar: Usuario.lembrar
+            //             }
+            //             Usuario.set(user);
+            //             navigation.navigate("HomeLogado");
+            //         })
+            //         .catch((error) => {
+            //             console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>", error);
+            //             // let erroMsg;
+            //             // if (error == "Error: Request failed with status code 401") {
+            //             //     erroMsg = "Usuário e/ou senha inválidos.";
+            //             // } else if (error == "Error: Request failed with status code 503") {
+            //             //     erroMsg =
+            //             //         "O serviço de autenticação está fora do ar, tente novamente mais tarde.";
+            //             // } else if (error == "Error: Network Error") {
+            //             //     erroMsg = "Verifique sua conexão com a internet e tente novamente.";
+            //             // } else if (error == "Error: Request failed with status code 400") {
+            //             //     erroMsg = "A conta não está totalmente configurada.";
+            //             // } else {
+            //             //     erroMsg = error.message;
+            //             // }
+            //             // Alert.aviso(erroMsg);
+
+            //             // setLoading(false);
+            //         });
+            // } else {
+            var jwtDecode = require("jwt-decode");
+
+            const data = qs.stringify({
+                grant_type: Constants.GRANT_TYPE,
+                username: usuario
+                    .replace(/\D/g, ""),
+                password: pass ? pass : senha,
+                client_id: Constants.CLIENT_ID,
+                client_secret: ServiceConfig.clientSecret,
+                scope: Constants.SCOPE,
+            });
+
+            Auth.logarSSO(data)
+                .then((response) => {
+                    Usuario.token = response.data.access_token;
+                    Usuario.refresh_token = response.data.refresh_token;
+                    Usuario.username = usuario
+                        .replace(/\D/g, "");
+                    Usuario.password = senha;
+                    var decoded = jwtDecode(response.data.access_token);
+                    Usuario.roles = decoded.realm_access.roles;
+                    // this.setState({ loading: false }, () => 
+                    // setLoading(false);
+
+                    let user = {
+                        cpf: Usuario.cpf,
+                        userName: usernameBiometria,
+                        password: pass ? pass : senha,
+                        lembrar: Usuario.lembrar
+                    }
+                    Usuario.set(user);
+
+                    navigation.navigate("HomeLogado");
+                    console.log('Auth.logarSSO -------->>>>> logado!')
+                })
+                .catch((error) => {
+                    console.log(" Auth.logarSSO -------->>>>> error :", error);
+                    let erroMsg;
+                    if (error == "Error: Request failed with status code 401") {
+                        erroMsg = "Usuário e/ou senha inválidos.";
+                    } else if (error == "Error: Request failed with status code 503") {
+                        erroMsg =
+                            "O serviço de autenticação está fora do ar, tente novamente mais tarde.";
+                    } else if (error == "Error: Network Error") {
+                        erroMsg = "Verifique sua conexão com a internet e tente novamente.";
+                    } else if (error == "Error: Request failed with status code 400") {
+                        erroMsg = "A conta não está totalmente configurada.";
+                    } else {
+                        erroMsg = error.message;
+                    }
+                    Alert.aviso(erroMsg);
+                    this.setState({ loading: false });
+                    setLoading(false);
+                });
+            // }
         }
     }
-
     return (
         <View style={styles.container} >
 
