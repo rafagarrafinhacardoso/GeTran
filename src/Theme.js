@@ -21,20 +21,20 @@ export default {
         enable: '#6f6f6f',
         ...Styles.colors
     },
-    fonts: {
-        primary: Platform.select({
-            ios: 'Helvetica Neue',
-            android: 'Helvetica Neue Medium'
-        }),
-        primaryBold: Platform.select({
-            ios: 'Helvetica Neue',
-            android: 'Helvetica Neue Bold'
-        }),
-        secundary: Platform.select({
-            ios: 'Helvetica Neue',
-            android: 'Helvetica Neue'
-        })
-    },
+    // fonts: {
+    //     primary: Platform.select({
+    //         ios: 'Helvetica Neue',
+    //         android: 'Helvetica Neue Medium'
+    //     }),
+    //     primaryBold: Platform.select({
+    //         ios: 'Helvetica Neue',
+    //         android: 'Helvetica Neue Bold'
+    //     }),
+    //     secundary: Platform.select({
+    //         ios: 'Helvetica Neue',
+    //         android: 'Helvetica Neue'
+    //     })
+    // },
     title: {
         fontSize: 22,
         alignSelf: 'center',

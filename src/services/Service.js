@@ -188,25 +188,24 @@ const createRequest = (api, type) => {
 };
 
 const createSSO = apiSSO => {
-    console.log('---------------createSSO------xxxxx xxxxx------------', apiSSO);
-    // if( !apiSSO.interceptors)
-    {
-        apiSSO.interceptors.request.use(request => {
-            request.headers = {
-                'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
-            };
-            console.log('REQUEST', request);
-            return request;
-        });
+    console.log('---------------createSSO------------------', apiSSO);
 
-        apiSSO.interceptors.response.use((response) => {
-            console.log('RESPONSE', response);
-            return response;
-        }, error => {
-                console.log('RESPONSE error', error);
-                return Promise.reject(error);
-        });
-    }
+    apiSSO.interceptors.request.use(request => {
+        request.headers = {
+            'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+        };
+        console.log('REQUEST', request);
+        return request;
+    });
+
+    apiSSO.interceptors.response.use((response) => {
+        console.log('RESPONSE', response);
+        return response;
+    }, error => {
+        console.log('RESPONSE error', error);
+        return Promise.reject(error);
+    });
+
 };
 
 class Service {

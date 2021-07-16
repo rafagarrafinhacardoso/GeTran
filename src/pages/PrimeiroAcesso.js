@@ -28,10 +28,10 @@ export default function PrimeiroAcesso(props) {
     // const [texto, setTexto] = useState('Olá, \n  Seja bem-vindo \n ao ');
 
 
-    useEffect(() => {
-        console.log(">>>TelaInicial<<<", process.env.API_HOST_SSO);
-        Service.createApis();
-    }, []);
+    // useEffect(() => {
+    //     console.log("------------->>>TelaInicial<<<", Service.apiSSO);
+    //     Service.createApis();
+    // }, []);
 
 
     const handlechange = (e) => {

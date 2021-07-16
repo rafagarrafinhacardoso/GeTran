@@ -36,8 +36,10 @@ export default function TelaInicial(props) {
 
 
     useEffect(() => {
-        console.log(">>>TelaInicial<<<", process.env.API_HOST_SSO);
-        Service.createApis();
+        console.log("------------>>>TelaInicial<<<", Service.apiSSO);
+        if(Service.apiSSO == null){
+            Service.createApis();
+        }
     }, []);
 
 
