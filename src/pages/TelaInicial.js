@@ -1,15 +1,11 @@
-import { StatusBar } from 'expo-status-bar';
 import React, { useState, useEffect } from "react";
 import { ImageBackground, Platform, StyleSheet, Text, TouchableOpacity, View, Image, TextInput } from 'react-native';
 import CnpjUtils from "../Utils/CnpjUtils";
 import CpfUtils from '../Utils/CpfUtils';
 import roadImage from "../pages/assets/img/road.jpg";
 import logoImage from "../pages/assets/img/logo-getran.png";
-import FlashMessage from "react-native-flash-message";
-import { showMessage, hideMessage } from "react-native-flash-message";
+import { showMessage } from "react-native-flash-message";
 import Theme from '../Theme'
-// import { createIconSetFromIcoMoon } from "react-native-vector-icons";
-import icoMoonConfig from "../../selection.json";
 import Service from '../services/Service';
 import Auth from "../services/Auth";
 import * as Constants from "../config/constantes";

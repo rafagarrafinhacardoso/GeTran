@@ -2,11 +2,11 @@ import React, { useState } from 'react'
 import logoImage from "../pages/assets/img/logo-getran.png";
 import roadImage from "../pages/assets/img/road.jpg";
 import { ImageBackground, Platform, StyleSheet, Text, TouchableOpacity, View, Image, TextInput, Pressable, Modal } from 'react-native';
-
+import Theme from '../Theme';
 export default function MaisOpcoes(props) {
     const { navigation } = props;
     const [reenvioEmail, setReenvioEmail] = useState(false);
-
+    const [dialogText, setDialogText] = useState();
 
 
 
@@ -71,21 +71,21 @@ export default function MaisOpcoes(props) {
 
             <View style={{ marginTop: '-10%' }}>
                 <TouchableOpacity
-                    style={styles.buttonPrimary}
+                    style={Theme.button.primary}
                     onPress={() => setReenvioEmail(true)}
                 >
                     <Text style={styles.textButtonPrimary}>REENVIO DE E-MAIL E VALIDAÇÃO</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity
-                    style={styles.buttonPrimary}
+                    style={Theme.button.primary}
 
                 >
                     <Text style={styles.textButtonPrimary}>RECUPERAÇÃO DE SENHA</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity
-                    style={styles.buttonPrimary}
+                    style={Theme.button.primary}
 
                 >
                     <Text style={styles.textButtonPrimary}>ALTERAÇÃO DE E-MAIL</Text>
@@ -93,7 +93,7 @@ export default function MaisOpcoes(props) {
 
 
                 <TouchableOpacity
-                    style={styles.buttonSecondary}
+                    style={Theme.button.secundary}
                     onPress={() => navigation.navigate("Home")}
                 >
                     <Text style={styles.textButtonSecundary}>VOLTAR</Text>
@@ -151,18 +151,18 @@ const styles = StyleSheet.create({
         color: "#000",
         fontWeight: "bold",
     },
-    buttonPrimary: {
-        width: '90%',
-        height: 48,
-        backgroundColor: '#fff',
-        marginTop: 10,
-        letterSpacing: 2,
-        borderRadius: 3,
-        borderWidth: 3,
-        borderColor: 'black',
-        alignItems: 'center',
-        alignSelf: 'center'
-    },
+    // buttonPrimary: {
+    //     width: '90%',
+    //     height: 48,
+    //     backgroundColor: '#fff',
+    //     marginTop: 10,
+    //     letterSpacing: 2,
+    //     borderRadius: 3,
+    //     borderWidth: 3,
+    //     borderColor: 'black',
+    //     alignItems: 'center',
+    //     alignSelf: 'center'
+    // },
     textButtonPrimary: {
         fontSize: 16,
         color: "black",
