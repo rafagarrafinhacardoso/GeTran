@@ -2,41 +2,18 @@ import React, { useState } from 'react'
 import logoImage from "../pages/assets/img/logo-getran.png";
 import roadImage from "../pages/assets/img/road.jpg";
 import { ImageBackground, Platform, StyleSheet, Text, TouchableOpacity, View, Image, TextInput, Pressable, Modal } from 'react-native';
-
+import Theme from '../Theme';
 export default function MaisOpcoes(props) {
     const { navigation } = props;
     const [reenvioEmail, setReenvioEmail] = useState(false);
-
-
-
-
-    function OpenDialog() {
-        console.log('---------')
-        return (
-            <Modal
-                animationType="slide"
-                transparent={true}
-                visible={reenvioEmail}
-                onRequestClose={() => {
-                    // Alert.alert("Modal has been closed.");
-                    setReenvioEmail(!reenvioEmail);
-                }}
-            >
-                <View style={styles.centeredView}>
-                    <View style={styles.modalView}>
-                        <Text style={{ fontSize: 16, textAlign: 'left' }}>Validação de Cadastro</Text>
-                        <Text style={styles.textButtonPrimary}>Informe seu CPF para receber um novo e-mail de validação</Text>
-
-                        <Pressable
-                            style={styles.buttonSecondary}
-                            onPress={() => setReenvioEmail(!reenvioEmail)}
-                        >
-                            <Text style={styles.textButtonSecundary}>Hide Modal</Text>
-                        </Pressable>
-                    </View>
-                </View>
-            </Modal>
-        )
+    const [dialogSenha, setDialogSenha] = useState(false);
+    function closeDialog() {
+        console.log("closeDialog");
+        setReenvioEmail(false);
+    }
+    function closeDialogSenha() {
+        console.log("closeDialog");
+        setDialogSenha(false);
     }
     return (
         <View style={styles.container}>
@@ -71,21 +48,22 @@ export default function MaisOpcoes(props) {
 
             <View style={{ marginTop: '-10%' }}>
                 <TouchableOpacity
-                    style={styles.buttonPrimary}
+                    style={Theme.button.primary}
                     onPress={() => setReenvioEmail(true)}
                 >
                     <Text style={styles.textButtonPrimary}>REENVIO DE E-MAIL E VALIDAÇÃO</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity
-                    style={styles.buttonPrimary}
+                    style={Theme.button.primary}
+                    onPress={() => setDialogSenha(true)}
 
                 >
                     <Text style={styles.textButtonPrimary}>RECUPERAÇÃO DE SENHA</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity
-                    style={styles.buttonPrimary}
+                    style={Theme.button.primary}
 
                 >
                     <Text style={styles.textButtonPrimary}>ALTERAÇÃO DE E-MAIL</Text>
@@ -93,14 +71,14 @@ export default function MaisOpcoes(props) {
 
 
                 <TouchableOpacity
-                    style={styles.buttonSecondary}
+                    style={Theme.button.secundary}
                     onPress={() => navigation.navigate("Home")}
                 >
                     <Text style={styles.textButtonSecundary}>VOLTAR</Text>
                 </TouchableOpacity>
             </View>
 
-            <Modal
+            {/* <Modal
                 animationType="slide"
                 transparent={true}
                 visible={reenvioEmail}
@@ -122,12 +100,52 @@ export default function MaisOpcoes(props) {
                         </Pressable>
                     </View>
                 </View>
-            </Modal>
+            </Modal> */}
+            <OpenDialog
+                dialogClose={reenvioEmail}
+                setDialogClose={setReenvioEmail}
+                dialogText={"Informe seu CPF para receber um novo e-mail de validação"}
+                onPress={closeDialog}
+            />
+            <OpenDialog
+                dialogClose={dialogSenha}
+                setDialogClose={setDialogSenha}
+                dialogText={"Informe seu senha para receber um novo e-mail de validação"}
+                onPress={closeDialogSenha}
+            />
 
         </View>
     )
 }
+function OpenDialog(props) {
+    const { dialogClose, setDialogClose, dialogText, onPress } = props;
 
+    console.log('---------')
+    return (
+        <Modal
+            animationType="slide"
+            transparent={true}
+            visible={dialogClose}
+            onRequestClose={() => {
+                // Alert.alert("Modal has been closed.");
+                setDialogClose(!dialogClose);
+            }}
+        >
+            <View style={styles.centeredView}>
+                <View style={styles.modalView}>
+                    <Text style={{ fontSize: 16, textAlign: 'left' }}>Validação de Cadastro</Text>
+                    <Text style={styles.textButtonPrimary}>{dialogText}</Text>
+                    <Pressable
+                        style={styles.buttonSecondary}
+                        onPress={() => onPress()}
+                    >
+                        <Text style={styles.textButtonSecundary}>Hide Modal</Text>
+                    </Pressable>
+                </View>
+            </View>
+        </Modal>
+    )
+}
 const styles = StyleSheet.create({
     container: {
         flex: 1
@@ -151,18 +169,18 @@ const styles = StyleSheet.create({
         color: "#000",
         fontWeight: "bold",
     },
-    buttonPrimary: {
-        width: '90%',
-        height: 48,
-        backgroundColor: '#fff',
-        marginTop: 10,
-        letterSpacing: 2,
-        borderRadius: 3,
-        borderWidth: 3,
-        borderColor: 'black',
-        alignItems: 'center',
-        alignSelf: 'center'
-    },
+    // buttonPrimary: {
+    //     width: '90%',
+    //     height: 48,
+    //     backgroundColor: '#fff',
+    //     marginTop: 10,
+    //     letterSpacing: 2,
+    //     borderRadius: 3,
+    //     borderWidth: 3,
+    //     borderColor: 'black',
+    //     alignItems: 'center',
+    //     alignSelf: 'center'
+    // },
     textButtonPrimary: {
         fontSize: 16,
         color: "black",
