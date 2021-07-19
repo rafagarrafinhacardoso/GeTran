@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { ImageBackground, Platform, StyleSheet, Text, TouchableOpacity, View, Image, TextInput } from 'react-native';
+import { ImageBackground, Platform, StyleSheet, Text, TouchableOpacity, View, Image, TextInput, ActivityIndicator } from 'react-native';
 import CnpjUtils from "../Utils/CnpjUtils";
 import CpfUtils from '../Utils/CpfUtils';
 import roadImage from "../pages/assets/img/road.jpg";
@@ -25,7 +25,7 @@ export default function TelaInicial(props) {
     const [usernameBiometria, setUsernameBiometria] = useState();
     const [senha, setSenha] = useState(null);
     const [errorCpf, setErrorCpf] = useState(false);
-    // const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(false);
     // const [usernameBiometria, setUsernameBiometria] = useState();
 
     // const [texto, setTexto] = useState('Olá, \n  Seja bem-vindo \n ao ');
@@ -36,6 +36,8 @@ export default function TelaInicial(props) {
         if (Service.apiSSO == null) {
             Service.createApis();
         }
+        setUsuario();
+        setSenha();
     }, []);
 
 
@@ -93,7 +95,7 @@ export default function TelaInicial(props) {
                 type: "danger",
             });
         } else {
-            // setLoading(true);
+            setLoading(true);
 
             // if (loginBiometria) {
             //     // Decrypt
@@ -162,8 +164,9 @@ export default function TelaInicial(props) {
                     message: "Digite um CPF/CNPJ",
                     type: "danger",
                 });
+                setLoading(false);
                 return;
-            } 
+            }
             const data = qs.stringify({
                 grant_type: Constants.GRANT_TYPE,
                 username: usuario
@@ -184,7 +187,7 @@ export default function TelaInicial(props) {
                     var decoded = jwtDecode(response.data.access_token);
                     Usuario.roles = decoded.realm_access.roles;
                     // this.setState({ loading: false }, () => 
-                    // setLoading(false);
+                    setLoading(false);
 
                     let user = {
                         cpf: Usuario.cpf,
@@ -199,6 +202,7 @@ export default function TelaInicial(props) {
                 })
                 .catch((error) => {
                     console.log(" Auth.logarSSO -------->>>>> error :", error);
+                    setLoading(false);
                     let erroMsg;
                     if (error == "Error: Request failed with status code 401") {
                         erroMsg = "Usuário e/ou senha inválidos.";
@@ -214,107 +218,125 @@ export default function TelaInicial(props) {
                     }
                     Alert.aviso(erroMsg);
                     this.setState({ loading: false });
-                    setLoading(false);
                 });
             // }
         }
     }
-    return (
-        <View style={styles.container} >
+
+    if (loading) {
+        return (
+            <View style={[
+                {
+                    flex: 1,
+                    justifyContent: "center"
+                }, {
+                    flexDirection: "row",
+                    justifyContent: "space-around",
+                    padding: 10
+                }
+            ]} >
+                <ActivityIndicator size="large" color="#0000ff" />
+            </View>
+        );
+    }
+    else {
+        return (
+            <View style={styles.container} >
 
 
-            <View style={styles.containeImage}>
-                <ImageBackground
-                    style={{
-                        alignSelf: "center",
-                        width: "100%",
-                        height: "100%",
-                        flex: 1,
-                    }}
-                    resizeMode="cover"
-                    source={roadImage}
-                >
-                    <Image
+                <View style={styles.containeImage}>
+                    <ImageBackground
                         style={{
                             alignSelf: "center",
-                            marginTop: 60,
+                            width: "100%",
+                            height: "100%",
+                            flex: 1,
                         }}
-                        source={logoImage}
-                    />
-                </ImageBackground>
-            </View>
-
-            <View style={styles.containeFormMed}>
-                <Text style={styles.textTitulo}>
-                    Sistema de Gestão{'\n'}de Trânsito do DF
-                </Text>
-
-
-                <TextInput
-                    selectionColor={'black'}
-                    style={styles.textInp}
-                    placeholder='DIGITE SEU CPF'
-                    value={usuario || ''}
-                    keyboardType={"numeric"}
-                    onChangeText={(usuario) => handlechange(usuario)}
-                    onBlur={(a) => handleLostFocus(a)}
-                />
-
-                <TextInput
-                    selectionColor={'black'}
-                    style={styles.textInp}
-                    placeholder='SENHA'
-                    autoCorrect={false}
-                    autoCapitalize="none"
-                    secureTextEntry={true}
-                    onChangeText={(senha) => setSenha(senha)}
-                />
-
-                <TouchableOpacity
-                    style={styles.buttonPrimary}
-                    onPress={() => onClickIniciarCadastro()}
-                >
-                    <Text style={styles.textButtonPrimary}>ENTRAR</Text>
-                </TouchableOpacity>
-
-
-                <View
-                    style={styles.containeTwoButtonText}
-                >
-                    <TouchableOpacity
-                        onPress={() => navigation.setParams({
-                            primAcess: true
-                        })}
-                        style={{
-                            paddingTop: 10,
-                        }}
+                        resizeMode="cover"
+                        source={roadImage}
                     >
-                        <Text style={{
-                            // fontFamily: Theme.fonts.primaryBold,
-                            fontSize: 14,
-                            color: "#000",
-                            fontWeight: "bold",
-                        }}>PRIMEIRO ACESSO</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        onPress={() => navigation.navigate("MaisOpcoes")}
-                        style={{
-                            padding: 10,
-                            paddingEnd: 0
-                        }}
-                    >
-                        <Text style={{
-                            // fontFamily: Theme.fonts.primaryBold,
-                            fontSize: 14,
-                            color: "#000",
-                            fontWeight: "bold",
-                            textAlign: 'right'
-                        }}>MAIS OPÇÕES</Text>
-                    </TouchableOpacity>
+                        <Image
+                            style={{
+                                alignSelf: "center",
+                                marginTop: 60,
+                            }}
+                            source={logoImage}
+                        />
+                    </ImageBackground>
                 </View>
-            </View>
-        </View >
-    );
+
+                <View style={styles.containeFormMed}>
+                    <Text style={styles.textTitulo}>
+                        Sistema de Gestão{'\n'}de Trânsito do DF
+                    </Text>
+
+
+                    <TextInput
+                        selectionColor={'black'}
+                        style={styles.textInp}
+                        placeholder='DIGITE SEU CPF'
+                        value={usuario || ''}
+                        keyboardType={"numeric"}
+                        onChangeText={(usuario) => handlechange(usuario)}
+                        onBlur={(a) => handleLostFocus(a)}
+                    />
+
+                    <TextInput
+                        selectionColor={'black'}
+                        style={styles.textInp}
+                        placeholder='SENHA'
+                        autoCorrect={false}
+                        autoCapitalize="none"
+                        secureTextEntry={true}
+                        onChangeText={(senha) => setSenha(senha)}
+                    />
+
+                    <TouchableOpacity
+                        style={styles.buttonPrimary}
+                        onPress={() => onClickIniciarCadastro()}
+                    >
+                        <Text style={styles.textButtonPrimary}>ENTRAR</Text>
+                    </TouchableOpacity>
+
+
+                    <View
+                        style={styles.containeTwoButtonText}
+                    >
+                        <TouchableOpacity
+                            onPress={() => navigation.setParams({
+                                primAcess: true
+                            })}
+                            style={{
+                                paddingTop: 10,
+                            }}
+                        >
+                            <Text style={{
+                                // fontFamily: Theme.fonts.primaryBold,
+                                fontSize: 14,
+                                color: "#000",
+                                fontWeight: "bold",
+                            }}>PRIMEIRO ACESSO</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            onPress={() => navigation.navigate("MaisOpcoes")}
+                            style={{
+                                padding: 10,
+                                paddingEnd: 0
+                            }}
+                        >
+                            <Text style={{
+                                // fontFamily: Theme.fonts.primaryBold,
+                                fontSize: 14,
+                                color: "#000",
+                                fontWeight: "bold",
+                                textAlign: 'right'
+                            }}>MAIS OPÇÕES</Text>
+                        </TouchableOpacity>
+                    </View>
+                </View>
+            </View >
+        );
+    }
 }
 
 const styles = StyleSheet.create({
