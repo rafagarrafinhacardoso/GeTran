@@ -3,10 +3,12 @@ import logoImage from "../pages/assets/img/logo-getran.png";
 import roadImage from "../pages/assets/img/road.jpg";
 import { ImageBackground, Platform, StyleSheet, Text, TouchableOpacity, View, Image, TextInput, Pressable, Modal } from 'react-native';
 import Theme from '../Theme';
+import GenericDialog from '../generics/GenericDialog';
 export default function MaisOpcoes(props) {
     const { navigation } = props;
     const [reenvioEmail, setReenvioEmail] = useState(false);
     const [dialogSenha, setDialogSenha] = useState(false);
+    const [alterarEmail, setAlterarEmail] = useState(false);
     function closeDialog() {
         console.log("closeDialog");
         setReenvioEmail(false);
@@ -14,6 +16,9 @@ export default function MaisOpcoes(props) {
     function closeDialogSenha() {
         console.log("closeDialog");
         setDialogSenha(false);
+    }
+    function closeDialogeAlterarEmail(){
+        setAlterarEmail(false)
     }
     return (
         <View style={styles.container}>
@@ -64,7 +69,7 @@ export default function MaisOpcoes(props) {
 
                 <TouchableOpacity
                     style={Theme.button.primary}
-
+                    onPress={() => setAlterarEmail(true)}
                 >
                     <Text style={styles.textButtonPrimary}>ALTERAÇÃO DE E-MAIL</Text>
                 </TouchableOpacity>
@@ -78,74 +83,62 @@ export default function MaisOpcoes(props) {
                 </TouchableOpacity>
             </View>
 
-            {/* <Modal
-                animationType="slide"
-                transparent={true}
-                visible={reenvioEmail}
-                onRequestClose={() => {
-                    // Alert.alert("Modal has been closed.");
-                    setReenvioEmail(!reenvioEmail);
-                }}
-            >
-                <View style={styles.centeredView}>
-                    <View style={styles.modalView}>
-                        <Text style={{ fontSize: 16, textAlign: 'left' }}>Validação de Cadastro</Text>
-                        <Text style={styles.textButtonPrimary}>Informe seu CPF para receber um novo e-mail de validação</Text>
 
-                        <Pressable
-                            style={styles.buttonSecondary}
-                            onPress={() => setReenvioEmail(!reenvioEmail)}
-                        >
-                            <Text style={styles.textButtonSecundary}>Hide Modal</Text>
-                        </Pressable>
-                    </View>
-                </View>
-            </Modal> */}
-            <OpenDialog
+            <GenericDialog
                 dialogClose={reenvioEmail}
                 setDialogClose={setReenvioEmail}
+                dialogTitle={'Validação de Cadastro'}
                 dialogText={"Informe seu CPF para receber um novo e-mail de validação"}
                 onPress={closeDialog}
             />
-            <OpenDialog
+            <GenericDialog
                 dialogClose={dialogSenha}
                 setDialogClose={setDialogSenha}
-                dialogText={"Informe seu senha para receber um novo e-mail de validação"}
+                dialogTitle={'Recuperação de Senha'}
+                dialogText={"Digite seu CPF para receber um e-mail de recuperação da senha de acesso"}
                 onPress={closeDialogSenha}
+            />
+
+            <GenericDialog
+                dialogClose={alterarEmail}
+                setDialogClose={setAlterarEmail}
+                dialogTitle={'Alteração de E-mail'}
+                dialogText={"Informe seu CPF para proseguir com a alteração de e-mail"}
+                onPress={closeDialogeAlterarEmail}
             />
 
         </View>
     )
 }
-function OpenDialog(props) {
-    const { dialogClose, setDialogClose, dialogText, onPress } = props;
+// function OpenDialog(props) {
+//     const { dialogClose, setDialogClose, dialogText, onPress } = props;
 
-    console.log('---------')
-    return (
-        <Modal
-            animationType="slide"
-            transparent={true}
-            visible={dialogClose}
-            onRequestClose={() => {
-                // Alert.alert("Modal has been closed.");
-                setDialogClose(!dialogClose);
-            }}
-        >
-            <View style={styles.centeredView}>
-                <View style={styles.modalView}>
-                    <Text style={{ fontSize: 16, textAlign: 'left' }}>Validação de Cadastro</Text>
-                    <Text style={styles.textButtonPrimary}>{dialogText}</Text>
-                    <Pressable
-                        style={styles.buttonSecondary}
-                        onPress={() => onPress()}
-                    >
-                        <Text style={styles.textButtonSecundary}>Hide Modal</Text>
-                    </Pressable>
-                </View>
-            </View>
-        </Modal>
-    )
-}
+//     console.log('---------')
+//     return (
+//         <Modal
+//             animationType="slide"
+//             transparent={true}
+//             visible={dialogClose}
+//             onRequestClose={() => {
+//                 // Alert.alert("Modal has been closed.");
+//                 setDialogClose(!dialogClose);
+//             }}
+//         >
+//             <View style={styles.centeredView}>
+//                 <View style={styles.modalView}>
+//                     <Text style={{ fontSize: 16, textAlign: 'left' }}>Validação de Cadastro</Text>
+//                     <Text style={styles.textButtonPrimary}>{dialogText}</Text>
+//                     <Pressable
+//                         style={styles.buttonSecondary}
+//                         onPress={() => onPress()}
+//                     >
+//                         <Text style={styles.textButtonSecundary}>Hide Modal</Text>
+//                     </Pressable>
+//                 </View>
+//             </View>
+//         </Modal>
+//     )
+// }
 const styles = StyleSheet.create({
     container: {
         flex: 1
