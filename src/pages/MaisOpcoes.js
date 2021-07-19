@@ -6,37 +6,14 @@ import Theme from '../Theme';
 export default function MaisOpcoes(props) {
     const { navigation } = props;
     const [reenvioEmail, setReenvioEmail] = useState(false);
-    const [dialogText, setDialogText] = useState();
-
-
-
-    function OpenDialog() {
-        console.log('---------')
-        return (
-            <Modal
-                animationType="slide"
-                transparent={true}
-                visible={reenvioEmail}
-                onRequestClose={() => {
-                    // Alert.alert("Modal has been closed.");
-                    setReenvioEmail(!reenvioEmail);
-                }}
-            >
-                <View style={styles.centeredView}>
-                    <View style={styles.modalView}>
-                        <Text style={{ fontSize: 16, textAlign: 'left' }}>Validação de Cadastro</Text>
-                        <Text style={styles.textButtonPrimary}>Informe seu CPF para receber um novo e-mail de validação</Text>
-
-                        <Pressable
-                            style={styles.buttonSecondary}
-                            onPress={() => setReenvioEmail(!reenvioEmail)}
-                        >
-                            <Text style={styles.textButtonSecundary}>Hide Modal</Text>
-                        </Pressable>
-                    </View>
-                </View>
-            </Modal>
-        )
+    const [dialogSenha, setDialogSenha] = useState(false);
+    function closeDialog() {
+        console.log("closeDialog");
+        setReenvioEmail(false);
+    }
+    function closeDialogSenha() {
+        console.log("closeDialog");
+        setDialogSenha(false);
     }
     return (
         <View style={styles.container}>
@@ -79,6 +56,7 @@ export default function MaisOpcoes(props) {
 
                 <TouchableOpacity
                     style={Theme.button.primary}
+                    onPress={() => setDialogSenha(true)}
 
                 >
                     <Text style={styles.textButtonPrimary}>RECUPERAÇÃO DE SENHA</Text>
@@ -100,7 +78,7 @@ export default function MaisOpcoes(props) {
                 </TouchableOpacity>
             </View>
 
-            <Modal
+            {/* <Modal
                 animationType="slide"
                 transparent={true}
                 visible={reenvioEmail}
@@ -122,12 +100,52 @@ export default function MaisOpcoes(props) {
                         </Pressable>
                     </View>
                 </View>
-            </Modal>
+            </Modal> */}
+            <OpenDialog
+                dialogClose={reenvioEmail}
+                setDialogClose={setReenvioEmail}
+                dialogText={"Informe seu CPF para receber um novo e-mail de validação"}
+                onPress={closeDialog}
+            />
+            <OpenDialog
+                dialogClose={dialogSenha}
+                setDialogClose={setDialogSenha}
+                dialogText={"Informe seu senha para receber um novo e-mail de validação"}
+                onPress={closeDialogSenha}
+            />
 
         </View>
     )
 }
+function OpenDialog(props) {
+    const { dialogClose, setDialogClose, dialogText, onPress } = props;
 
+    console.log('---------')
+    return (
+        <Modal
+            animationType="slide"
+            transparent={true}
+            visible={dialogClose}
+            onRequestClose={() => {
+                // Alert.alert("Modal has been closed.");
+                setDialogClose(!dialogClose);
+            }}
+        >
+            <View style={styles.centeredView}>
+                <View style={styles.modalView}>
+                    <Text style={{ fontSize: 16, textAlign: 'left' }}>Validação de Cadastro</Text>
+                    <Text style={styles.textButtonPrimary}>{dialogText}</Text>
+                    <Pressable
+                        style={styles.buttonSecondary}
+                        onPress={() => onPress()}
+                    >
+                        <Text style={styles.textButtonSecundary}>Hide Modal</Text>
+                    </Pressable>
+                </View>
+            </View>
+        </Modal>
+    )
+}
 const styles = StyleSheet.create({
     container: {
         flex: 1
