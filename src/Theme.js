@@ -22,6 +22,18 @@ export default {
             alignItems: 'center',
             alignSelf: 'center'
         },
+        tertiary: {
+            width: '100%',
+            height: 48,
+            backgroundColor: '#fff',
+            marginTop: 10,
+            letterSpacing: 2,
+            borderRadius: 3,
+            borderWidth: 3,
+            borderColor: 'black',
+            alignItems: 'center',
+            alignSelf: 'center'
+        },
         third: {
             width: '100%',
             height: 48,
