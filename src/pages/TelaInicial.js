@@ -190,7 +190,7 @@ export default function TelaInicial(props) {
                     setLoading(false);
 
                     let user = {
-                        cpf: Usuario.cpf,
+                        cpf: usuario,
                         userName: usernameBiometria,
                         password: pass ? pass : senha,
                         lembrar: Usuario.lembrar
@@ -198,7 +198,7 @@ export default function TelaInicial(props) {
                     Usuario.set(user);
 
                     navigation.navigate("HomeLogado");
-                    console.log('Auth.logarSSO -------->>>>> logado!')
+                    console.log('Auth.logarSSO -------->>>>> logado!', user)
                 })
                 .catch((error) => {
                     console.log(" Auth.logarSSO -------->>>>> error :", error);

@@ -11,6 +11,7 @@ import Theme from '../Theme'
 // import { createIconSetFromIcoMoon } from "react-native-vector-icons";
 import icoMoonConfig from "../../selection.json";
 import Service from '../services/Service';
+import Usuario from "../daos/Usuario";
 // const Linericon = createIconSetFromIcoMoon(
 //     icoMoonConfig,
 //     "icomoon",
@@ -19,11 +20,11 @@ import Service from '../services/Service';
 
 export default function HomeLogado(props) {
     const { navigation } = props;
-    const [usuario, setUsuario] = useState();
+    // const [usuario, setUsuario] = useState();
 
     useEffect(() => {
-        console.log(">>>TelaInicial<<<", process.env.API_HOST_SSO);
-        Service.createApis();
+        console.log(">>>HomeLogado<<<", Usuario.lembrar);
+        // Service.createApis();
     }, []);
 
 
@@ -37,81 +38,82 @@ export default function HomeLogado(props) {
                     Confira os serviços disponíveis:
                 </Text>
             </View>
-
-            <View style={styles.containeBox}>
-                <View>
+            <View style={{
+                padding: 15,
+            }} >
+                <View style={styles.containeBox}>
                     <Text style={styles.textTitulo}>
                         TALONÁRIO
                     </Text>
                     <Text style={styles.textCorpo}>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tincidunt placerat ligula.
                     </Text>
-                </View>
-                <View style={{ marginTop: '5%' }}>
+                    <View style={{ marginTop: '5%' }}>
 
-                    <TouchableOpacity
-                        style={Theme.button.third}
-                    //onPress={() => navigation.navigate("Home")}
-                    >
-                        <Text style={styles.textButtonPrimary}>ACESSAR TALONÁRIO</Text>
-                    </TouchableOpacity>
-                </View>
+                        <TouchableOpacity
+                            style={Theme.button.third}
+                        //onPress={() => navigation.navigate("Home")}
+                        >
+                            <Text style={Theme.textButton}>ACESSAR TALONÁRIO</Text>
+                        </TouchableOpacity>
+                    </View>
 
-            </View>
-            <View style={styles.containeBox}>
-                <View>
+                </View>
+                <View style={styles.containeBox}>
                     <Text style={styles.textTitulo}>
                         ROUBO E FURTO
                     </Text>
                     <Text style={styles.textCorpo}>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tincidunt placerat ligula.
                     </Text>
-                </View>
-                <View style={{ marginTop: '5%' }}>
+                    <View style={{ marginTop: '5%' }}>
 
-                    <TouchableOpacity
-                        style={Theme.button.third}
-                    //onPress={() => navigation.navigate("Home")}
-                    >
-                        <Text style={styles.textButtonPrimary}>ACESSAR ROUBO E FURTO</Text>
-                    </TouchableOpacity>
-                </View>
+                        <TouchableOpacity
+                            style={Theme.button.third}
+                        //onPress={() => navigation.navigate("Home")}
+                        >
+                            <Text style={Theme.textButton}>ACESSAR ROUBO E FURTO</Text>
+                        </TouchableOpacity>
+                    </View>
 
-            </View>
-            <View style={styles.containeBox}>
-                <View>
+                </View>
+                <View style={styles.containeBox}>
                     <Text style={styles.textTitulo}>
                         FUNÇÃO 2000
                     </Text>
                     <Text style={styles.textCorpo}>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tincidunt placerat ligula.
                     </Text>
-                </View>
-                <View style={{ marginTop: '5%' }}>
+                    <View style={{ marginTop: '5%' }}>
 
-                    <TouchableOpacity
-                        style={Theme.button.third}
-                    //onPress={() => navigation.navigate("Home")}
-                    >
-                        <Text style={styles.textButtonPrimary}>ACESSAR FUNÇÃO 2000</Text>
-                    </TouchableOpacity>
-                </View>
+                        <TouchableOpacity
+                            style={Theme.button.third}
+                        //onPress={() => navigation.navigate("Home")}
+                        >
+                            <Text style={Theme.textButton}>ACESSAR FUNÇÃO 2000</Text>
+                        </TouchableOpacity>
+                    </View>
 
+                </View>
             </View>
+
         </View >
     );
 }
 
 const styles = StyleSheet.create({
     container: {
-        width: '100%',
-        height: 100,
-        backgroundColor: '#EBF0F5',
-        margin: 'auto',
-        position: 'absolute',
-        overflow: 'scroll'
+        flex: 1,
+
+        // width: '100%',
+        // height: 100,
+        // backgroundColor: '#EBF0F5',
+        // margin: 'auto',
+        // position: 'absolute',
+        // overflow: 'scroll'
 
     }, containerTopo: {
+        padding: 15,
         width: '100%',
         height: 250,
         backgroundColor: '#181927',
@@ -132,13 +134,13 @@ const styles = StyleSheet.create({
         height: 'auto',
         backgroundColor: '#fff',
         marginTop: 15,
-        marginRight: 15,
-        marginBottom: 0,
-        marginLeft: 5,
+        // marginRight: 15,
+        // marginBottom: 0,
+        // marginLeft: 5,
         borderRadius: 5,
         padding: 15,
-        overflow: 'hidden'
-
+        overflow: 'hidden',
+        // position: 'absolute',
     },
     containeImage: {
         position: "relative",
@@ -153,13 +155,13 @@ const styles = StyleSheet.create({
     textBody: {
         fontSize: 30,
         color: "#fff",
-        marginTop:'20%'
-        
+        marginTop: '20%'
+
     },
     textBodyCorpo: {
         fontSize: 14,
         color: "#fff",
-        
+
     },
     textCorpo: {
         fontSize: 14,
