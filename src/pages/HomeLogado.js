@@ -28,28 +28,74 @@ export default function HomeLogado(props) {
 
 
     return (
-        <View style={styles.container} >           
-
-            <View style={styles.containeFormMed}>
-                <Text style={styles.textTitulo}>
-                    Sistema de Gestão{'\n'}de Trânsito do DF
+        <View style={styles.container} >
+            <View style={styles.containerTopo}>
+                <Text style={styles.textBody}>
+                    Olá, Ezequiel
                 </Text>
-                <TouchableOpacity
-                    style={styles.buttonPrimary}
-                    onPress={() => {
-                        /* HERE WE GONE SHOW OUR FIRST MESSAGE */
-                        navigation.navigate("Logado")
-                        showMessage({
-                            message: "Digite um CPF/CNPJ valido",
-                            // description: "Digite um CPF/CNPJ valido ",
-                            type: "danger",
-                            // backgroundColor: "purple", // background color
-                            // color: "#606060", // text color
-                        });
-                    }}
-                >
-                    <Text style={styles.textButtonPrimary}>ENTRAR</Text>
-                </TouchableOpacity>
+                <Text style={styles.textBodyCorpo}>
+                    Confira os serviços disponíveis:
+                </Text>
+            </View>
+
+            <View style={styles.containeBox}>
+                <View>
+                    <Text style={styles.textTitulo}>
+                        TALONÁRIO
+                    </Text>
+                    <Text style={styles.textCorpo}>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tincidunt placerat ligula.
+                    </Text>
+                </View>
+                <View style={{ marginTop: '5%' }}>
+
+                    <TouchableOpacity
+                        style={Theme.button.third}
+                    //onPress={() => navigation.navigate("Home")}
+                    >
+                        <Text style={styles.textButtonPrimary}>ACESSAR TALONÁRIO</Text>
+                    </TouchableOpacity>
+                </View>
+
+            </View>
+            <View style={styles.containeBox}>
+                <View>
+                    <Text style={styles.textTitulo}>
+                        ROUBO E FURTO
+                    </Text>
+                    <Text style={styles.textCorpo}>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tincidunt placerat ligula.
+                    </Text>
+                </View>
+                <View style={{ marginTop: '5%' }}>
+
+                    <TouchableOpacity
+                        style={Theme.button.third}
+                    //onPress={() => navigation.navigate("Home")}
+                    >
+                        <Text style={styles.textButtonPrimary}>ACESSAR ROUBO E FURTO</Text>
+                    </TouchableOpacity>
+                </View>
+
+            </View>
+            <View style={styles.containeBox}>
+                <View>
+                    <Text style={styles.textTitulo}>
+                        FUNÇÃO 2000
+                    </Text>
+                    <Text style={styles.textCorpo}>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tincidunt placerat ligula.
+                    </Text>
+                </View>
+                <View style={{ marginTop: '5%' }}>
+
+                    <TouchableOpacity
+                        style={Theme.button.third}
+                    //onPress={() => navigation.navigate("Home")}
+                    >
+                        <Text style={styles.textButtonPrimary}>ACESSAR FUNÇÃO 2000</Text>
+                    </TouchableOpacity>
+                </View>
 
             </View>
         </View >
@@ -58,8 +104,19 @@ export default function HomeLogado(props) {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        // backgroundColor: '#fff',
+        width: '100%',
+        height: 100,
+        backgroundColor: '#EBF0F5',
+        margin: 'auto',
+        position: 'absolute',
+        overflow: 'scroll'
+
+    }, containerTopo: {
+        width: '100%',
+        height: 250,
+        backgroundColor: '#181927',
+        marginBottom: -80
+
     },
     containeFormMed: {
         width: '100%',
@@ -70,15 +127,43 @@ const styles = StyleSheet.create({
         overflow: 'hidden',
         padding: 15,
     },
+    containeBox: {
+        width: "100%",
+        height: 'auto',
+        backgroundColor: '#fff',
+        marginTop: 15,
+        marginRight: 15,
+        marginBottom: 0,
+        marginLeft: 5,
+        borderRadius: 5,
+        padding: 15,
+        overflow: 'hidden'
+
+    },
     containeImage: {
         position: "relative",
         flexDirection: "row",
         height: "70%",
     },
     textTitulo: {
-        fontSize: 18,
+        fontSize: 14,
         color: "#000",
         fontWeight: "bold",
+    },
+    textBody: {
+        fontSize: 30,
+        color: "#fff",
+        marginTop:'20%'
+        
+    },
+    textBodyCorpo: {
+        fontSize: 14,
+        color: "#fff",
+        
+    },
+    textCorpo: {
+        fontSize: 14,
+        color: "#000",
     },
     textInp: {
         width: '100%',
@@ -102,7 +187,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center'
     },
     textButtonPrimary: {
-        fontSize: 14,
+        fontSize: 16,
         color: "#FFf",
         alignItems: 'center',
         alignSelf: 'center',
