@@ -292,10 +292,10 @@ export default function TelaInicial(props) {
                     />
 
                     <TouchableOpacity
-                        style={styles.buttonPrimary}
+                        style={Theme.button.primary}
                         onPress={() => onClickIniciarCadastro()}
                     >
-                        <Text style={styles.textButtonPrimary}>ENTRAR</Text>
+                        <Text style={Theme.textButton}>ENTRAR</Text>
                     </TouchableOpacity>
 
 

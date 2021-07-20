@@ -139,19 +139,19 @@ export default function PrimeiroAcesso(props) {
                     onBlur={(a) => handleLostFocus(a)}
                 />
                 <TouchableOpacity
-                    style={styles.buttonPrimary}
+                    style={Theme.button.primary}
                     onPress={() => onClickIniciarCadastro()}
                     // disabled={true}
                 >
-                    <Text style={styles.textButtonPrimary}>INICIAR CADASTRO</Text>
+                    <Text style={Theme.textButton}>INICIAR CADASTRO</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
-                    style={styles.buttonSecondary}
+                    style={Theme.button.secundary}
                     onPress={() => navigation.setParams({
                         primAcess: false
                     })}
                 >
-                    <Text style={styles.textButtonPrimary}>VOLTAR</Text>
+                    <Text style={Theme.textButton}>VOLTAR</Text>
                 </TouchableOpacity>
             </View>
         </View >
