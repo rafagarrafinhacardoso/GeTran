@@ -5,6 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import TelaInicial from './src/pages/TelaInicial';
 import PrimeiroAcesso from './src/pages/PrimeiroAcesso';
 import HomeLogado from './src/pages/HomeLogado';
+import Talonario from './src/pages/Talonario';
 import Home from './src/pages/Home';
 import FlashMessage from 'react-native-flash-message';
 
@@ -49,6 +50,19 @@ function PriAcesso({ navigation }) {
     
   );
 }
+
+function acesTalonario({ navigation }) {
+  return (
+    <View style={{ flex: 1 }}>
+      <Talonario navigation={navigation} />
+      <FlashMessage position="top" animated={true} />
+    </View>
+    
+  );
+}
+
+
+
 const Stack = createStackNavigator();
 
 function App() {
@@ -59,6 +73,7 @@ function App() {
         <Stack.Screen name="Details" component={DetailsScreen} />
         <Stack.Screen name="HomeLogado" component={Logado} />
         <Stack.Screen name="PrimeiroAcesso" component={PriAcesso} />
+        <Stack.Screen name="Talonario" component={acesTalonario} />
       </Stack.Navigator>
     </NavigationContainer>
   );

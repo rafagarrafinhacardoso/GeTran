@@ -17,7 +17,7 @@ import Service from '../services/Service';
 //     "icomoon.ttf"
 // );
 
-export default function HomeLogado(props) {
+export default function Talonario(props) {
     const { navigation } = props;
     const [usuario, setUsuario] = useState();
 
@@ -31,11 +31,9 @@ export default function HomeLogado(props) {
         <View style={styles.container} >
             <View style={styles.containerTopo}>
                 <Text style={styles.textBody}>
-                    Olá, Ezequiel
+                    aquiiiiiiiiii
                 </Text>
-                <Text style={styles.textBodyCorpo}>
-                    Confira os serviços disponíveis:
-                </Text>
+               
             </View>
 
             <View style={styles.containeBox}>
@@ -51,7 +49,7 @@ export default function HomeLogado(props) {
 
                     <TouchableOpacity
                         style={Theme.button.third}
-                    onPress={() => navigation.navigate("Talonario")}
+                    //onPress={() => navigation.navigate("Talonario")}
                     >
                         <Text style={styles.textButtonPrimary}>ACESSAR TALONÁRIO</Text>
                     </TouchableOpacity>
