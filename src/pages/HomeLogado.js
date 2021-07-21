@@ -1,23 +1,8 @@
-import { StatusBar } from 'expo-status-bar';
 import React, { useState, useEffect } from "react";
-import { ImageBackground, Platform, StyleSheet, Text, TouchableOpacity, View, Image, TextInput } from 'react-native';
-import CnpjUtils from "../Utils/CnpjUtils";
-import CpfUtils from '../Utils/CpfUtils';
-import roadImage from "../pages/assets/img/road.jpg";
-import logoImage from "../pages/assets/img/logo-getran.png";
-import FlashMessage from "react-native-flash-message";
-import { showMessage, hideMessage } from "react-native-flash-message";
+import { StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import Theme from '../Theme'
-// import { createIconSetFromIcoMoon } from "react-native-vector-icons";
-import icoMoonConfig from "../../selection.json";
-import Service from '../services/Service';
 import Usuario from "../daos/Usuario";
 import Auth from "../services/Auth";
-// const Linericon = createIconSetFromIcoMoon(
-//     icoMoonConfig,
-//     "icomoon",
-//     "icomoon.ttf"
-// );
 
 export default function HomeLogado(props) {
     const { navigation } = props;
@@ -25,7 +10,6 @@ export default function HomeLogado(props) {
 
     useEffect(() => {
         console.log(">>>HomeLogado<<<", Usuario.lembrar);
-        // Service.createApis();
         buscarUsuarioLogado();
     }, []);
     function buscarUsuarioLogado() {
@@ -69,7 +53,7 @@ export default function HomeLogado(props) {
                     <View style={{ marginTop: '5%' }}>
 
                         <TouchableOpacity
-                            style={Theme.button.third}
+                            style={Theme.button.primary}
                         onPress={() => navigation.navigate("Talonario")}
                         >
                             <Text style={Theme.textButton}>ACESSAR TALONÁRIO</Text>
@@ -87,7 +71,7 @@ export default function HomeLogado(props) {
                     <View style={{ marginTop: '5%' }}>
 
                         <TouchableOpacity
-                            style={Theme.button.third}
+                            style={Theme.button.primary}
                         onPress={() => navigation.navigate("RouboEfurto")}
                         >
                             <Text style={Theme.textButton}>ACESSAR ROUBO E FURTO</Text>
@@ -105,7 +89,7 @@ export default function HomeLogado(props) {
                     <View style={{ marginTop: '5%' }}>
 
                         <TouchableOpacity
-                            style={Theme.button.third}
+                            style={Theme.button.primary}
                         onPress={() => navigation.navigate("Funcao2000")}
                         >
                             <Text style={Theme.textButton}>ACESSAR FUNÇÃO 2000</Text>
@@ -122,14 +106,6 @@ export default function HomeLogado(props) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-
-        // width: '100%',
-        // height: 100,
-        // backgroundColor: '#EBF0F5',
-        // margin: 'auto',
-        // position: 'absolute',
-        // overflow: 'scroll'
-
     }, containerTopo: {
         padding: 15,
         width: '100%',
@@ -138,32 +114,14 @@ const styles = StyleSheet.create({
         marginBottom: -80
 
     },
-    containeFormMed: {
-        width: '100%',
-        height: 320,
-        backgroundColor: '#cccccc',
-        position: 'absolute',
-        bottom: 0,
-        overflow: 'hidden',
-        padding: 15,
-    },
     containeBox: {
         width: "100%",
         height: 'auto',
         backgroundColor: '#fff',
         marginTop: 15,
-        // marginRight: 15,
-        // marginBottom: 0,
-        // marginLeft: 5,
         borderRadius: 5,
         padding: 15,
         overflow: 'hidden',
-        // position: 'absolute',
-    },
-    containeImage: {
-        position: "relative",
-        flexDirection: "row",
-        height: "70%",
     },
     textTitulo: {
         fontSize: 14,
@@ -185,39 +143,4 @@ const styles = StyleSheet.create({
         fontSize: 14,
         color: "#000",
     },
-    textInp: {
-        width: '100%',
-        height: 48,
-        paddingLeft: 15,
-        fontSize: 16,
-        letterSpacing: 1,
-        borderColor: '#181926',
-        borderWidth: 2,
-        borderRadius: 3,
-        marginTop: 10
-    },
-    buttonPrimary: {
-        width: '100%',
-        height: 48,
-        backgroundColor: '#0077ff',
-        marginTop: 10,
-        letterSpacing: 2,
-        borderRadius: 3,
-        alignItems: 'center',
-        alignSelf: 'center'
-    },
-    textButtonPrimary: {
-        fontSize: 16,
-        color: "#FFf",
-        alignItems: 'center',
-        alignSelf: 'center',
-        marginTop: '4%',
-    },
-    containeTwoButtonText: {
-        width: '100%',
-        height: 48,
-        flexDirection: "row",
-        justifyContent: 'space-between',
-        // backgroundColor: '#fff',
-    }
 });

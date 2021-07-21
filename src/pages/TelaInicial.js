@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { ImageBackground, Platform, StyleSheet, Text, TouchableOpacity, View, Image, TextInput, ActivityIndicator } from 'react-native';
+import { ImageBackground, StyleSheet, Text, TouchableOpacity, View, Image, TextInput, ActivityIndicator } from 'react-native';
 import CnpjUtils from "../Utils/CnpjUtils";
 import CpfUtils from '../Utils/CpfUtils';
 import roadImage from "../pages/assets/img/road.jpg";
@@ -13,16 +13,12 @@ import ServiceConfig from "../config/ServiceConfig";
 import Usuario from "../daos/Usuario";
 import Alert from "../helper/Alert";
 import qs from "qs";
-// const Linericon = createIconSetFromIcoMoon(
-//     icoMoonConfig,
-//     "icomoon",
-//     "icomoon.ttf"
-// );
+
 
 export default function TelaInicial(props) {
     const { navigation } = props;
     const [usuario, setUsuario] = useState();
-    const [usernameBiometria, setUsernameBiometria] = useState();
+    // const [usernameBiometria, setUsernameBiometria] = useState();
     const [senha, setSenha] = useState(null);
     const [errorCpf, setErrorCpf] = useState(false);
     const [loading, setLoading] = useState(false);
@@ -191,7 +187,7 @@ export default function TelaInicial(props) {
 
                     let user = {
                         cpf: usuario,
-                        userName: usernameBiometria,
+                        // userName: usernameBiometria,
                         password: pass ? pass : senha,
                         lembrar: Usuario.lembrar
                     }
@@ -374,28 +370,10 @@ const styles = StyleSheet.create({
         borderRadius: 3,
         marginTop: 10
     },
-    buttonPrimary: {
-        width: '100%',
-        height: 48,
-        backgroundColor: '#0077ff',
-        marginTop: 10,
-        letterSpacing: 2,
-        borderRadius: 3,
-        alignItems: 'center',
-        alignSelf: 'center'
-    },
-    textButtonPrimary: {
-        fontSize: 14,
-        color: "#FFf",
-        alignItems: 'center',
-        alignSelf: 'center',
-        marginTop: '4%',
-    },
     containeTwoButtonText: {
         width: '100%',
         height: 48,
         flexDirection: "row",
         justifyContent: 'space-between',
-        // backgroundColor: '#fff',
     }
 });

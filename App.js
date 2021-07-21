@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Button, View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import TelaInicial from './src/pages/TelaInicial';
@@ -8,7 +8,6 @@ import HomeLogado from './src/pages/HomeLogado';
 import Talonario from './src/pages/Talonario';
 import FuncaoDoisMil from './src/pages/FuncaoDoisMil';
 import RouboEFurto from './src/pages/RouboEFurto';
-import Home from './src/pages/Home';
 import FlashMessage from 'react-native-flash-message';
 import MaisOpcoes from './src/pages/MaisOpcoes'
 

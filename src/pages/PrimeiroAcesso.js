@@ -1,44 +1,19 @@
-import { StatusBar } from 'expo-status-bar';
-import React, { useState, useEffect } from "react";
-import { ImageBackground, Platform, StyleSheet, Text, TouchableOpacity, View, Image, TextInput } from 'react-native';
+import React, { useState } from "react";
+import { ImageBackground, StyleSheet, Text, TouchableOpacity, View, Image, TextInput } from 'react-native';
 import CnpjUtils from "../Utils/CnpjUtils";
 import CpfUtils from '../Utils/CpfUtils';
 import roadImage from "../pages/assets/img/road.jpg";
 import logoImage from "../pages/assets/img/logo-getran.png";
-import FlashMessage from "react-native-flash-message";
-import { showMessage, hideMessage } from "react-native-flash-message";
-import Theme from '../Theme'
-// import { createIconSetFromIcoMoon } from "react-native-vector-icons";
-import icoMoonConfig from "../../selection.json";
-import Service from '../services/Service';
-// const Linericon = createIconSetFromIcoMoon(
-//     icoMoonConfig,
-//     "icomoon",
-//     "icomoon.ttf"
-// );
+import { showMessage } from "react-native-flash-message";
+import Theme from '../Theme';
 
 export default function PrimeiroAcesso(props) {
     const { navigation } = props;
     const [usuario, setUsuario] = useState();
-    // const [usernameBiometria, setUsernameBiometria] = useState();
-    // const [senha, setSenha] = useState(null);
     const [errorCpf, setErrorCpf] = useState(false);
-    // const [usernameBiometria, setUsernameBiometria] = useState();
-
-    // const [texto, setTexto] = useState('Olá, \n  Seja bem-vindo \n ao ');
-
-
-    // useEffect(() => {
-    //     console.log("------------->>>TelaInicial<<<", Service.apiSSO);
-    //     Service.createApis();
-    // }, []);
-
 
     const handlechange = (e) => {
         const doc = mascaraDocumento(e);
-
-        // setUsernameBiometria(doc);
-
         setUsuario(doc);
         console.log("handlechange :", doc);
         if (doc.length == 18) {
@@ -49,7 +24,6 @@ export default function PrimeiroAcesso(props) {
             setErrorCpf(true);
         }
     }
-
     const handleLostFocus = (e) => {
         console.log("handleLostFocus------>>>> errorCpf: ", errorCpf);
         if (errorCpf) {
@@ -59,7 +33,6 @@ export default function PrimeiroAcesso(props) {
             });
         }
     }
-
     const digitaCPF = (cpf, isCpf) => {
         if (isCpf) {
             if (CpfUtils.validateCpf(cpf)) {
@@ -75,7 +48,6 @@ export default function PrimeiroAcesso(props) {
             }
         }
     }
-
     const mascaraDocumento = (documento) => {
         let doc = documento?.replace(/\D/g, "") || '';
         let masked = doc;
@@ -98,8 +70,6 @@ export default function PrimeiroAcesso(props) {
 
     return (
         <View style={styles.container} >
-
-
             <View style={styles.containeImage}>
                 <ImageBackground
                     style={{
@@ -120,7 +90,6 @@ export default function PrimeiroAcesso(props) {
                     />
                 </ImageBackground>
             </View>
-
             <View style={styles.containeFormMed}>
                 <Text style={styles.textTitulo}>
                     Primeiro Acesso
@@ -128,7 +97,6 @@ export default function PrimeiroAcesso(props) {
                 <Text style={styles.textDescricao}>
                     Digite seu CPF para iniciar o cadastro no aplicativo do GETRAN DF
                 </Text>
-
                 <TextInput
                     selectionColor={'black'}
                     style={styles.textInp}
@@ -141,7 +109,7 @@ export default function PrimeiroAcesso(props) {
                 <TouchableOpacity
                     style={Theme.button.primary}
                     onPress={() => onClickIniciarCadastro()}
-                    // disabled={true}
+                // disabled={true}
                 >
                     <Text style={Theme.textButton}>INICIAR CADASTRO</Text>
                 </TouchableOpacity>
@@ -161,7 +129,6 @@ export default function PrimeiroAcesso(props) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        // backgroundColor: '#fff',
     },
     containeFormMed: {
         width: '100%',
@@ -234,6 +201,5 @@ const styles = StyleSheet.create({
         height: 48,
         flexDirection: "row",
         justifyContent: 'space-between',
-        // backgroundColor: '#fff',
     }
 });

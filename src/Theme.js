@@ -34,15 +34,6 @@ export default {
             alignItems: 'center',
             alignSelf: 'center'
         },
-        third: {
-            width: '100%',
-            height: 48,
-            backgroundColor: '#0077ff',
-            color: '#fff',
-            marginTop: 10,
-            letterSpacing: 2,
-            borderRadius: 3,
-        },
         fourth: {
             width: '100%',
             height: 48,
