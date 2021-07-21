@@ -14,7 +14,7 @@ const rhssoPassword = process.env.RHSSO_PASSWORD;
 // const urlAgendamento = env.API_AGENDAMENTO;
 // const urlRegistroPropriedade = env.API_REGISTRO_PROPRIEDADE;
 // const urlEnviarEmail = env.API_ENVIAR_EMAIL;
-// const urlUsuario = env.API_USUARIO;
+const urlUsuario = process.env.API_USUARIO;
 // const urlQrCode = env.API_QR_CODE;
 // const urlVinculoVeiculo = env.API_VINCULO_VEICULO;
 // const urlDetalhesUsuario = env.API_DETALHES_USUARIO;
@@ -52,6 +52,7 @@ class ServiceConfig {
     static urlSistema = urlSistema;
     static url = urlProd;
     static urlSSO = urlSSO;
+    static urlUsuario = urlUsuario;
     /*
     static urlAgendamento = urlAgendamento;
     static urlNadaConsta = urlNadaConsta;

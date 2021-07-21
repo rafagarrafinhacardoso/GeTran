@@ -21,7 +21,7 @@ import Auth from "../services/Auth";
 
 export default function HomeLogado(props) {
     const { navigation } = props;
-    // const [usuario, setUsuario] = useState();
+    const [usuario, setUsuario] = useState();
 
     useEffect(() => {
         console.log(">>>HomeLogado<<<", Usuario.lembrar);
@@ -50,7 +50,7 @@ export default function HomeLogado(props) {
         <View style={styles.container} >
             <View style={styles.containerTopo}>
                 <Text style={styles.textBody}>
-                    Olá, Ezequiel
+                    Olá, {usuario ? usuario.nome : ""}
                 </Text>
                 <Text style={styles.textBodyCorpo}>
                     Confira os serviços disponíveis:
