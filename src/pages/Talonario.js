@@ -11,6 +11,7 @@ import Theme from '../Theme'
 // import { createIconSetFromIcoMoon } from "react-native-vector-icons";
 import icoMoonConfig from "../../selection.json";
 import Service from '../services/Service';
+import Icons from 'react-native-vector-icons/AntDesign';
 // const Linericon = createIconSetFromIcoMoon(
 //     icoMoonConfig,
 //     "icomoon",
@@ -30,50 +31,64 @@ export default function Talonario(props) {
     return (
         <View style={styles.container} >
             <View style={styles.containerTopo}>
-                <Text style={styles.textBody}>
-                    Talonário
-                </Text>
+                <TouchableOpacity
+                    onPress={() => navigation.goBack()}
+                >
+                    <Text style={styles.textBody}>
+                        <Icons size={23} name='left'
+                            style={{
+                                color: '#fff',
+                                // opacity: 0.8,
+                                alignSelf: 'center'
+                            }} />
+                        {" "}TALONÁRIO
+                    </Text>
+                </TouchableOpacity>
+
 
             </View>
 
-            <View style={styles.containeBox}>
 
-                <View>
+
+            <View style={{
+                padding: 15,
+            }}>
+                <View style={styles.containeBox}>
                     <TouchableOpacity
                         style={Theme.button.fourth}
                     //onPress={() => navigation.navigate("Talonario")}
                     >
-                        <Text style={styles.textButtonPrimary}>TALONÁRIO SERVIÇO 1</Text>
+                        <Text style={Theme.textButtonBleck}>TALONÁRIO 1</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={Theme.button.fourth}
                     //onPress={() => navigation.navigate("Talonario")}
                     >
-                        <Text style={styles.textButtonPrimary}>TALONÁRIO SERVIÇO 2</Text>
+                        <Text style={Theme.textButtonBleck}>TALONÁRIO 2</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={Theme.button.fourth}
                     //onPress={() => navigation.navigate("Talonario")}
                     >
-                        <Text style={styles.textButtonPrimary}>TALONÁRIO SERVIÇO 3</Text>
+                        <Text style={Theme.textButtonBleck}>TALONÁRIO 3</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={Theme.button.fourth}
                     //onPress={() => navigation.navigate("Talonario")}
                     >
-                        <Text style={styles.textButtonPrimary}>TALONÁRIO SERVIÇO 4</Text>
+                        <Text style={Theme.textButtonBleck}>TALONÁRIO 4</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={Theme.button.fourth}
                     //onPress={() => navigation.navigate("Talonario")}
                     >
-                        <Text style={styles.textButtonPrimary}>TALONÁRIO SERVIÇO 5</Text>
+                        <Text style={Theme.textButtonBleck}>TALONÁRIO 5</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={Theme.button.fourth}
                     //onPress={() => navigation.navigate("Talonario")}
                     >
-                        <Text style={styles.textButtonPrimary}>TALONÁRIO SERVIÇO 6</Text>
+                        <Text style={Theme.textButtonBleck}>TALONÁRIO 6</Text>
                     </TouchableOpacity>
                 </View>
 
