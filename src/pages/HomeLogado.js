@@ -50,16 +50,12 @@ export default function HomeLogado(props) {
                     <Text style={styles.textCorpo}>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tincidunt placerat ligula.
                     </Text>
-                    <View style={{ marginTop: '5%' }}>
-
                         <TouchableOpacity
                             style={Theme.button.primary}
                         onPress={() => navigation.navigate("Talonario")}
                         >
                             <Text style={Theme.textButton}>ACESSAR TALONÁRIO</Text>
                         </TouchableOpacity>
-                    </View>
-
                 </View>
                 <View style={styles.containeBox}>
                     <Text style={styles.textTitulo}>
@@ -68,16 +64,12 @@ export default function HomeLogado(props) {
                     <Text style={styles.textCorpo}>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tincidunt placerat ligula.
                     </Text>
-                    <View style={{ marginTop: '5%' }}>
-
                         <TouchableOpacity
                             style={Theme.button.primary}
                         onPress={() => navigation.navigate("RouboEfurto")}
                         >
                             <Text style={Theme.textButton}>ACESSAR ROUBO E FURTO</Text>
                         </TouchableOpacity>
-                    </View>
-
                 </View>
                 <View style={styles.containeBox}>
                     <Text style={styles.textTitulo}>
@@ -86,7 +78,6 @@ export default function HomeLogado(props) {
                     <Text style={styles.textCorpo}>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tincidunt placerat ligula.
                     </Text>
-                    <View style={{ marginTop: '5%' }}>
 
                         <TouchableOpacity
                             style={Theme.button.primary}
@@ -94,8 +85,6 @@ export default function HomeLogado(props) {
                         >
                             <Text style={Theme.textButton}>ACESSAR FUNÇÃO 2000</Text>
                         </TouchableOpacity>
-                    </View>
-
                 </View>
             </View>
 

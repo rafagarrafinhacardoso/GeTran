@@ -28,7 +28,7 @@ export default function GenericDialog(props) {
             }}>
                 <View style={styles.modalView}>
                     <Text style={{ fontSize: 23, fontWeight: 'bold' }}>{dialogTitle}</Text>
-                    <Text >{dialogText}</Text>
+                    <Text style={{ fontSize: 16 }}>{dialogText}</Text>
                     <TextInput
                         selectionColor={'black'}
                         style={styles.textInp}
@@ -42,13 +42,13 @@ export default function GenericDialog(props) {
                         style={Theme.button.primary}
                         onPress={() => enviarEmail()}
                     >
-                        <Text style={Theme.textButton}>Enviar E-mail</Text>
+                        <Text style={Theme.textButton}>ENVIAR E-MAIL</Text>
                     </Pressable>
                     <Pressable
                         style={Theme.button.secundary}
                         onPress={() => onPress()}
                     >
-                        <Text style={Theme.textButton}>Cancelar</Text>
+                        <Text style={Theme.textButton}>CANCELAR</Text>
                     </Pressable>
                 </View>
             </View>
