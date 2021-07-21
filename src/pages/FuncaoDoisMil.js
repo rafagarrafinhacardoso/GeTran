@@ -11,6 +11,7 @@ import Theme from '../Theme'
 // import { createIconSetFromIcoMoon } from "react-native-vector-icons";
 import icoMoonConfig from "../../selection.json";
 import Service from '../services/Service';
+import Icons from 'react-native-vector-icons/AntDesign';
 // const Linericon = createIconSetFromIcoMoon(
 //     icoMoonConfig,
 //     "icomoon",
@@ -30,50 +31,64 @@ export default function FuncaoDoisMil(props) {
     return (
         <View style={styles.container} >
             <View style={styles.containerTopo}>
-                <Text style={styles.textBody}>
-                    Função 2000
-                </Text>
+                <TouchableOpacity
+                    onPress={() => navigation.goBack()}
+                >
+                    <Text style={styles.textBody}>
+                        <Icons size={23} name='left'
+                            style={{
+                                color: '#fff',
+                                // opacity: 0.8,
+                                alignSelf: 'center'
+                            }} />
+                        {" "}Função 2000
+                    </Text>
+                </TouchableOpacity>
+
 
             </View>
 
-            <View style={styles.containeBox}>
 
-                <View>
+
+            <View style={{
+                padding: 15,
+            }}>
+                <View style={styles.containeBox}>
                     <TouchableOpacity
                         style={Theme.button.fourth}
                     //onPress={() => navigation.navigate("Talonario")}
                     >
-                        <Text style={styles.textButtonPrimary}>FUNÇAO 2000 1</Text>
+                        <Text style={Theme.textButtonBleck}>FUNÇÃO 2000 1</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={Theme.button.fourth}
                     //onPress={() => navigation.navigate("Talonario")}
                     >
-                        <Text style={styles.textButtonPrimary}>FUNÇAO 2000 2</Text>
+                        <Text style={Theme.textButtonBleck}>FUNÇÃO 2000 2</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={Theme.button.fourth}
                     //onPress={() => navigation.navigate("Talonario")}
                     >
-                        <Text style={styles.textButtonPrimary}>FUNÇAO 2000 3</Text>
+                        <Text style={Theme.textButtonBleck}>FUNÇÃO 2000 3</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={Theme.button.fourth}
                     //onPress={() => navigation.navigate("Talonario")}
                     >
-                        <Text style={styles.textButtonPrimary}>FUNÇAO 2000 4</Text>
+                        <Text style={Theme.textButtonBleck}>FUNÇÃO 2000 4</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={Theme.button.fourth}
                     //onPress={() => navigation.navigate("Talonario")}
                     >
-                        <Text style={styles.textButtonPrimary}>FUNÇAO 2000 5</Text>
+                        <Text style={Theme.textButtonBleck}>FUNÇÃO 2000 5</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={Theme.button.fourth}
                     //onPress={() => navigation.navigate("Talonario")}
                     >
-                        <Text style={styles.textButtonPrimary}>FUNÇAO 2000 6</Text>
+                        <Text style={Theme.textButtonBleck}>FUNÇÃO 2000 6</Text>
                     </TouchableOpacity>
                 </View>
 
@@ -84,18 +99,20 @@ export default function FuncaoDoisMil(props) {
 
 const styles = StyleSheet.create({
     container: {
-        width: '100%',
-        height: 100,
-        backgroundColor: '#EBF0F5',
-        margin: 'auto',
-        position: 'absolute',
-        overflow: 'scroll'
+        flex: 1,
+        // width: '100%',
+        // height: 100,
+        // backgroundColor: '#EBF0F5',
+        // margin: 'auto',
+        // position: 'absolute',
+        // overflow: 'scroll'
 
     }, containerTopo: {
         width: '100%',
         height: 250,
         backgroundColor: '#181927',
-        marginBottom: -80
+        marginBottom: -80,
+        padding: 15,
 
     },
     containeFormMed: {
@@ -111,13 +128,14 @@ const styles = StyleSheet.create({
         width: "100%",
         height: 'auto',
         backgroundColor: '#fff',
-        marginTop: 15,
-        marginRight: 15,
-        marginBottom: 0,
-        marginLeft: 5,
+        // marginTop: 15,
+        // marginRight: 15,
+        // marginBottom: 0,
+        // marginLeft: 5,
         borderRadius: 5,
         padding: 15,
-        overflow: 'hidden'
+        paddingTop: 5
+        // overflow: 'hidden'
 
     },
     containeImage: {

@@ -12,6 +12,7 @@ import Theme from '../Theme'
 import icoMoonConfig from "../../selection.json";
 import Service from '../services/Service';
 import Usuario from "../daos/Usuario";
+import Auth from "../services/Auth";
 // const Linericon = createIconSetFromIcoMoon(
 //     icoMoonConfig,
 //     "icomoon",
@@ -25,8 +26,25 @@ export default function HomeLogado(props) {
     useEffect(() => {
         console.log(">>>HomeLogado<<<", Usuario.lembrar);
         // Service.createApis();
+        buscarUsuarioLogado();
     }, []);
-
+    function buscarUsuarioLogado() {
+        console.log("Buscar usuario");
+        Auth.getUserLogadoSSO().then(resp => {
+            console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>')
+            console.log(resp);
+            console.log('<<<<<<<<<<<<<<<<<<<<<<<<<<<<<')
+            setUsuario({
+                'nome': resp.data.nome,
+                'cpf': resp.data.cpf,
+                'email': resp.data.email
+            });
+        }).catch(error => {
+            setLoading(false);
+            console.log(error);
+            Alert.aviso(error.message);
+        })
+    }
 
     return (
         <View style={styles.container} >
