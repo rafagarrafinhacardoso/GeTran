@@ -6,15 +6,24 @@ import TelaInicial from './src/pages/TelaInicial';
 import PrimeiroAcesso from './src/pages/PrimeiroAcesso';
 import HomeLogado from './src/pages/HomeLogado';
 import Talonario from './src/pages/Talonario';
+import FuncaoDoisMil from './src/pages/FuncaoDoisMil';
+import RouboEFurto from './src/pages/RouboEFurto';
 import Home from './src/pages/Home';
 import FlashMessage from 'react-native-flash-message';
+import MaisOpcoes from './src/pages/MaisOpcoes'
 
 
-function HomeDeslogado({ navigation }) {
+function HomeDeslogado({ route, navigation }) {
+  const { primAcess } = route.params;
   return (
     <View style={{ flex: 1 }}>
-      <TelaInicial navigation={navigation} />
-      <FlashMessage position="top" animated={true} />
+      {!primAcess &&
+        <TelaInicial navigation={navigation} />
+      }
+      {primAcess &&
+        <PrimeiroAcesso navigation={navigation} />
+      }
+      <FlashMessage position="bottom" animated={true} />
     </View>
   );
 }
@@ -29,9 +38,6 @@ function Logado({ navigation }) {
   );
 }
 
-
-
-
 function DetailsScreen({ navigation }) {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
@@ -41,13 +47,9 @@ function DetailsScreen({ navigation }) {
     </View>
   );
 }
-function PriAcesso({ navigation }) {
+function MaisOpts({ navigation }) {
   return (
-    <View style={{ flex: 1 }}>
-      <PrimeiroAcesso navigation={navigation} />
-      <FlashMessage position="top" animated={true} />
-    </View>
-    
+    <MaisOpcoes navigation={navigation} />
   );
 }
 
@@ -55,6 +57,24 @@ function acesTalonario({ navigation }) {
   return (
     <View style={{ flex: 1 }}>
       <Talonario navigation={navigation} />
+      <FlashMessage position="top" animated={true} />
+    </View>
+    
+  );
+}
+function acesRouboEfurto({ navigation }) {
+  return (
+    <View style={{ flex: 1 }}>
+      <RouboEFurto navigation={navigation} />
+      <FlashMessage position="top" animated={true} />
+    </View>
+    
+  );
+}
+function acesFuncao2000({ navigation }) {
+  return (
+    <View style={{ flex: 1 }}>
+      <FuncaoDoisMil navigation={navigation} />
       <FlashMessage position="top" animated={true} />
     </View>
     
@@ -69,11 +89,13 @@ function App() {
   return (
     <NavigationContainer  >
       <Stack.Navigator initialRouteName="Home" screenOptions={{ headerShown: false }} >
-        <Stack.Screen name="Home" component={HomeDeslogado} />
+        <Stack.Screen name="Home" component={HomeDeslogado} initialParams={{ primAcess: false }} />
         <Stack.Screen name="Details" component={DetailsScreen} />
-        <Stack.Screen name="HomeLogado" component={Logado} />
-        <Stack.Screen name="PrimeiroAcesso" component={PriAcesso} />
+        <Stack.Screen name="HomeLogado" component={Logado} />        
         <Stack.Screen name="Talonario" component={acesTalonario} />
+        <Stack.Screen name="RouboEfurto" component={acesRouboEfurto} />
+        <Stack.Screen name="Funcao2000" component={acesFuncao2000} />
+        <Stack.Screen name="MaisOpcoes" component={MaisOpts} />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -17,7 +17,7 @@ import Service from '../services/Service';
 //     "icomoon.ttf"
 // );
 
-export default function Talonario(props) {
+export default function FuncaoDoisMil(props) {
     const { navigation } = props;
     const [usuario, setUsuario] = useState();
 
@@ -31,7 +31,7 @@ export default function Talonario(props) {
         <View style={styles.container} >
             <View style={styles.containerTopo}>
                 <Text style={styles.textBody}>
-                    Talonário
+                    Função 2000
                 </Text>
 
             </View>
@@ -43,37 +43,37 @@ export default function Talonario(props) {
                         style={Theme.button.fourth}
                     //onPress={() => navigation.navigate("Talonario")}
                     >
-                        <Text style={styles.textButtonPrimary}>TALONÁRIO SERVIÇO 1</Text>
+                        <Text style={styles.textButtonPrimary}>FUNÇAO 2000 1</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={Theme.button.fourth}
                     //onPress={() => navigation.navigate("Talonario")}
                     >
-                        <Text style={styles.textButtonPrimary}>TALONÁRIO SERVIÇO 2</Text>
+                        <Text style={styles.textButtonPrimary}>FUNÇAO 2000 2</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={Theme.button.fourth}
                     //onPress={() => navigation.navigate("Talonario")}
                     >
-                        <Text style={styles.textButtonPrimary}>TALONÁRIO SERVIÇO 3</Text>
+                        <Text style={styles.textButtonPrimary}>FUNÇAO 2000 3</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={Theme.button.fourth}
                     //onPress={() => navigation.navigate("Talonario")}
                     >
-                        <Text style={styles.textButtonPrimary}>TALONÁRIO SERVIÇO 4</Text>
+                        <Text style={styles.textButtonPrimary}>FUNÇAO 2000 4</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={Theme.button.fourth}
                     //onPress={() => navigation.navigate("Talonario")}
                     >
-                        <Text style={styles.textButtonPrimary}>TALONÁRIO SERVIÇO 5</Text>
+                        <Text style={styles.textButtonPrimary}>FUNÇAO 2000 5</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={Theme.button.fourth}
                     //onPress={() => navigation.navigate("Talonario")}
                     >
-                        <Text style={styles.textButtonPrimary}>TALONÁRIO SERVIÇO 6</Text>
+                        <Text style={styles.textButtonPrimary}>FUNÇAO 2000 6</Text>
                     </TouchableOpacity>
                 </View>
 

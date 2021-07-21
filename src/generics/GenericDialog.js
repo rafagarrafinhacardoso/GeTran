@@ -19,8 +19,15 @@ export default function GenericDialog(props) {
                 setDialogClose(!dialogClose);
             }}
         >
-            <View style={styles.modalView}>
-                <View >
+            <View style={{
+                flex: 1,
+                justifyContent: "center",
+                alignItems: "center",
+                // marginTop: 22,
+                backgroundColor: "rgba(10, 23, 38, 0.9)",
+                height: "100%",
+            }}>
+                <View style={styles.modalView}>
                     <Text style={{ fontSize: 23, fontWeight: 'bold' }}>{dialogTitle}</Text>
                     <Text >{dialogText}</Text>
                     <TextInput
@@ -101,7 +108,7 @@ const styles = StyleSheet.create({
     modalView: {
         display: 'flex',
         width: '90%',
-        height: '36%',
+        height: 280,
         margin: 20,
         marginTop: '25%',
         backgroundColor: "white",
