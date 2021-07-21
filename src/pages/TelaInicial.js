@@ -182,7 +182,6 @@ export default function TelaInicial(props) {
                     Usuario.password = senha;
                     var decoded = jwtDecode(response.data.access_token);
                     Usuario.roles = decoded.realm_access.roles;
-                    // this.setState({ loading: false }, () => 
                     setLoading(false);
 
                     let user = {
@@ -213,7 +212,6 @@ export default function TelaInicial(props) {
                         erroMsg = error.message;
                     }
                     Alert.aviso(erroMsg);
-                    this.setState({ loading: false });
                 });
             // }
         }

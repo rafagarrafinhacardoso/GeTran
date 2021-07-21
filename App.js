@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, LogBox } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import TelaInicial from './src/pages/TelaInicial';
@@ -85,6 +85,7 @@ function acesFuncao2000({ navigation }) {
 const Stack = createStackNavigator();
 
 function App() {
+  LogBox.ignoreLogs(['Remote debugger']);
   return (
     <NavigationContainer  >
       <Stack.Navigator initialRouteName="Home" screenOptions={{ headerShown: false }} >
