@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { ImageBackground, StyleSheet, Text, TouchableOpacity, View, Image, TextInput, ActivityIndicator, KeyboardAvoidingView } from 'react-native';
+import { ImageBackground, StyleSheet, Text, TouchableOpacity, View, Image, TextInput, ActivityIndicator, KeyboardAvoidingView, Modal } from 'react-native';
 import CnpjUtils from "../Utils/CnpjUtils";
 import CpfUtils from '../Utils/CpfUtils';
 import roadImage from "../pages/assets/img/road.jpg";
@@ -217,125 +217,127 @@ export default function TelaInicial(props) {
         }
     }
 
-    if (loading) {
-        return (
-            <View style={[
-                {
-                    flex: 1,
-                    justifyContent: "center"
-                }, {
-                    flexDirection: "row",
-                    justifyContent: "space-around",
-                    padding: 10
-                }
-            ]} >
-                <ActivityIndicator size="large" color="#0000ff" />
-            </View>
-        );
-    }
-    else {
-        return (
-            <KeyboardAvoidingView
-                behavior={Platform.OS === "ios" ? "padding" : "height"}
-                style={styles.container}
-            >
-                <View style={styles.container} >
 
+    return (
+        <KeyboardAvoidingView
+            behavior={Platform.OS === "ios" ? "padding" : ""}
+            style={styles.container}
+        >
+            <View style={styles.container} >
+                <Modal
+                    animationType="slide"
+                    transparent={true}
+                    visible={loading}
+                >
+                    <View style={[
+                        {
+                            flex: 1,
+                            justifyContent: "center",
+                            backgroundColor: "rgba(10, 23, 38, 0.9)",
+                        }, {
+                            flexDirection: "row",
+                            justifyContent: "space-around",
+                            padding: 10
+                        }
+                    ]} >
+                        <ActivityIndicator size="large" color="#fff" />
+                    </View>
+                </Modal>
 
-                    <View style={styles.containeImage}>
-                        <ImageBackground
+                <View style={styles.containeImage}>
+                    <ImageBackground
+                        style={{
+                            alignSelf: "center",
+                            width: "100%",
+                            height: "100%",
+                            flex: 1,
+                        }}
+                        resizeMode="cover"
+                        source={roadImage}
+                    >
+                        <Image
                             style={{
                                 alignSelf: "center",
-                                width: "100%",
-                                height: "100%",
-                                flex: 1,
+                                marginTop: 60,
                             }}
-                            resizeMode="cover"
-                            source={roadImage}
-                        >
-                            <Image
-                                style={{
-                                    alignSelf: "center",
-                                    marginTop: 60,
-                                }}
-                                source={logoImage}
-                            />
-                        </ImageBackground>
-                    </View>
-
-                    <View style={styles.containeFormMed}>
-                        <Text style={styles.textTitulo}>
-                            Sistema de Gestão{'\n'}de Trânsito do DF
-                        </Text>
-
-
-                        <TextInput
-                            selectionColor={'black'}
-                            style={styles.textInp}
-                            placeholder='DIGITE SEU CPF'
-                            value={usuario || ''}
-                            keyboardType={"numeric"}
-                            onChangeText={(usuario) => handlechange(usuario)}
-                            onBlur={(a) => handleLostFocus(a)}
+                            source={logoImage}
                         />
+                    </ImageBackground>
+                </View>
 
-                        <TextInput
-                            selectionColor={'black'}
-                            style={styles.textInp}
-                            placeholder='SENHA'
-                            autoCorrect={false}
-                            autoCapitalize="none"
-                            secureTextEntry={true}
-                            onChangeText={(senha) => setSenha(senha)}
-                        />
+                <View style={styles.containeFormMed}>
+                    <Text style={styles.textTitulo}>
+                        Sistema de Gestão{'\n'}de Trânsito do DF
+                    </Text>
 
+
+                    <TextInput
+                        selectionColor={'black'}
+                        style={styles.textInp}
+                        placeholder='DIGITE SEU CPF'
+                        value={usuario || ''}
+                        keyboardType={"numeric"}
+                        onChangeText={(usuario) => handlechange(usuario)}
+                        onBlur={(a) => handleLostFocus(a)}
+                    />
+
+                    <TextInput
+                        selectionColor={'black'}
+                        style={styles.textInp}
+                        placeholder='SENHA'
+                        autoCorrect={false}
+                        autoCapitalize="none"
+                        secureTextEntry={true}
+                        onChangeText={(senha) => setSenha(senha)}
+                    />
+
+                    <TouchableOpacity
+                        style={Theme.button.primary}
+                        onPress={() => onClickIniciarCadastro()}
+                    >
+                        <Text style={Theme.textButton}>ENTRAR</Text>
+                    </TouchableOpacity>
+
+
+                    <View
+                        style={styles.containeTwoButtonText}
+                    >
                         <TouchableOpacity
-                            style={Theme.button.primary}
-                            onPress={() => onClickIniciarCadastro()}
+                            onPress={() => navigation.setParams({
+                                primAcess: true
+                            })}
+                            style={{
+                                paddingTop: 10,
+                            }}
                         >
-                            <Text style={Theme.textButton}>ENTRAR</Text>
+                            <Text style={{
+                                // fontFamily: Theme.fonts.primaryBold,
+                                fontSize: 14,
+                                color: "#000",
+                                fontWeight: "bold",
+                            }}>PRIMEIRO ACESSO</Text>
                         </TouchableOpacity>
-
-
-                        <View
-                            style={styles.containeTwoButtonText}
+                        <TouchableOpacity
+                            onPress={() => navigation.navigate("MaisOpcoes")}
+                            style={{
+                                padding: 10,
+                                paddingEnd: 0
+                            }}
                         >
-                            <TouchableOpacity
-                                onPress={() => navigation.setParams({
-                                    primAcess: true
-                                })}
-                                style={{
-                                    paddingTop: 10,
-                                }}
-                            >
-                                <Text style={{
-                                    // fontFamily: Theme.fonts.primaryBold,
-                                    fontSize: 14,
-                                    color: "#000",
-                                    fontWeight: "bold",
-                                }}>PRIMEIRO ACESSO</Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity
-                                onPress={() => navigation.navigate("MaisOpcoes")}
-                                style={{
-                                    padding: 10,
-                                    paddingEnd: 0
-                                }}
-                            >
-                                <Text style={{
-                                    // fontFamily: Theme.fonts.primaryBold,
-                                    fontSize: 14,
-                                    color: "#000",
-                                    fontWeight: "bold",
-                                    textAlign: 'right'
-                                }}>MAIS OPÇÕES</Text>
-                            </TouchableOpacity>
-                        </View>
+                            <Text style={{
+                                // fontFamily: Theme.fonts.primaryBold,
+                                fontSize: 14,
+                                color: "#000",
+                                fontWeight: "bold",
+                                textAlign: 'right'
+                            }}>MAIS OPÇÕES</Text>
+                        </TouchableOpacity>
                     </View>
-                </View >
-            </KeyboardAvoidingView>
-        );
-    }
+                </View>
+            </View >
+        </KeyboardAvoidingView>
+    );
+
 }
 
 const styles = StyleSheet.create({

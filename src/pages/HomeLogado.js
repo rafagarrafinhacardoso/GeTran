@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, TouchableOpacity, View, ActivityIndicator } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View, ActivityIndicator, Modal } from 'react-native';
 import Theme from '../Theme'
 import Usuario from "../daos/Usuario";
 import Auth from "../services/Auth";
@@ -34,84 +34,86 @@ export default function HomeLogado(props) {
             navigation.navigate("Home");
         })
     }
-    if (loading) {
-        return (
-            <View style={[
-                {
-                    flex: 1,
-                    justifyContent: "center"
-                }, {
-                    flexDirection: "row",
-                    justifyContent: "space-around",
-                    padding: 10
-                }
-            ]} >
-                <ActivityIndicator size="large" color="#0000ff" />
+    return (
+        <View style={styles.container} >
+            <Modal
+                animationType="slide"
+                transparent={true}
+                visible={loading}
+            >
+                <View style={[
+                    {
+                        flex: 1,
+                        justifyContent: "center",
+                        backgroundColor: "rgba(10, 23, 38, 0.9)",
+                    }, {
+                        flexDirection: "row",
+                        justifyContent: "space-around",
+                        padding: 10
+                    }
+                ]} >
+                    <ActivityIndicator size="large" color="#fff" />
+                </View>
+            </Modal>
+            <View style={styles.containerTopo}>
+                <Text style={styles.textBody}>
+                    Olá, {usuario ? usuario.nome : ""}
+                </Text>
+                <Text style={styles.textBodyCorpo}>
+                    Confira os serviços disponíveis:
+                </Text>
             </View>
-        );
-    }
-    else {
-        return (
-            <View style={styles.container} >
-                <View style={styles.containerTopo}>
-                    <Text style={styles.textBody}>
-                        Olá, {usuario ? usuario.nome : ""}
+            <View style={{
+                padding: 15,
+            }} >
+                <View style={styles.containeBox}>
+                    <Text style={styles.textTitulo}>
+                        TALONÁRIO
                     </Text>
-                    <Text style={styles.textBodyCorpo}>
-                        Confira os serviços disponíveis:
+                    <Text style={styles.textCorpo}>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tincidunt placerat ligula.
                     </Text>
+                    <TouchableOpacity
+                        style={Theme.button.primary}
+                        onPress={() => navigation.navigate("Talonario")}
+                    >
+                        <Text style={Theme.textButton}>ACESSAR TALONÁRIO</Text>
+                    </TouchableOpacity>
                 </View>
-                <View style={{
-                    padding: 15,
-                }} >
-                    <View style={styles.containeBox}>
-                        <Text style={styles.textTitulo}>
-                            TALONÁRIO
-                        </Text>
-                        <Text style={styles.textCorpo}>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tincidunt placerat ligula.
-                        </Text>
-                        <TouchableOpacity
-                            style={Theme.button.primary}
-                            onPress={() => navigation.navigate("Talonario")}
-                        >
-                            <Text style={Theme.textButton}>ACESSAR TALONÁRIO</Text>
-                        </TouchableOpacity>
-                    </View>
-                    <View style={styles.containeBox}>
-                        <Text style={styles.textTitulo}>
-                            ROUBO E FURTO
-                        </Text>
-                        <Text style={styles.textCorpo}>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tincidunt placerat ligula.
-                        </Text>
-                        <TouchableOpacity
-                            style={Theme.button.primary}
-                            onPress={() => navigation.navigate("RouboEfurto")}
-                        >
-                            <Text style={Theme.textButton}>ACESSAR ROUBO E FURTO</Text>
-                        </TouchableOpacity>
-                    </View>
-                    <View style={styles.containeBox}>
-                        <Text style={styles.textTitulo}>
-                            FUNÇÃO 2000
-                        </Text>
-                        <Text style={styles.textCorpo}>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tincidunt placerat ligula.
-                        </Text>
-
-                        <TouchableOpacity
-                            style={Theme.button.primary}
-                            onPress={() => navigation.navigate("Funcao2000")}
-                        >
-                            <Text style={Theme.textButton}>ACESSAR FUNÇÃO 2000</Text>
-                        </TouchableOpacity>
-                    </View>
+                <View style={styles.containeBox}>
+                    <Text style={styles.textTitulo}>
+                        ROUBO E FURTO
+                    </Text>
+                    <Text style={styles.textCorpo}>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tincidunt placerat ligula.
+                    </Text>
+                    <TouchableOpacity
+                        style={Theme.button.primary}
+                        onPress={() => navigation.navigate("RouboEfurto")}
+                    >
+                        <Text style={Theme.textButton}>ACESSAR ROUBO E FURTO</Text>
+                    </TouchableOpacity>
                 </View>
+                <View style={styles.containeBox}>
+                    <Text style={styles.textTitulo}>
+                        FUNÇÃO 2000
+                    </Text>
+                    <Text style={styles.textCorpo}>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris tincidunt placerat ligula.
+                    </Text>
 
-            </View >
-        );
-    }
+                    <TouchableOpacity
+                        style={Theme.button.primary}
+                        onPress={() => navigation.navigate("Funcao2000")}
+                    >
+                        <Text style={Theme.textButton}>ACESSAR FUNÇÃO 2000</Text>
+                    </TouchableOpacity>
+                </View>
+            </View>
+
+        </View >
+    );
+
 }
 
 const styles = StyleSheet.create({
