@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ImageBackground, StyleSheet, Text, TouchableOpacity, View, Image, TextInput } from 'react-native';
+import { ImageBackground, StyleSheet, Text, TouchableOpacity, View, Image, TextInput, KeyboardAvoidingView } from 'react-native';
 import CnpjUtils from "../Utils/CnpjUtils";
 import CpfUtils from '../Utils/CpfUtils';
 import roadImage from "../pages/assets/img/road.jpg";
@@ -69,60 +69,65 @@ export default function PrimeiroAcesso(props) {
     }
 
     return (
-        <View style={styles.container} >
-            <View style={styles.containeImage}>
-                <ImageBackground
-                    style={{
-                        alignSelf: "center",
-                        width: "100%",
-                        height: "100%",
-                        flex: 1,
-                    }}
-                    resizeMode="cover"
-                    source={roadImage}
-                >
-                    <Image
+        <KeyboardAvoidingView
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+        style={styles.container}
+        >
+            <View style={styles.container} >
+                <View style={styles.containeImage}>
+                    <ImageBackground
                         style={{
                             alignSelf: "center",
-                            marginTop: 60,
+                            width: "100%",
+                            height: "100%",
+                            flex: 1,
                         }}
-                        source={logoImage}
+                        resizeMode="cover"
+                        source={roadImage}
+                    >
+                        <Image
+                            style={{
+                                alignSelf: "center",
+                                marginTop: 60,
+                            }}
+                            source={logoImage}
+                        />
+                    </ImageBackground>
+                </View>
+                <View style={styles.containeFormMed}>
+                    <Text style={styles.textTitulo}>
+                        Primeiro Acesso
+                    </Text>
+                    <Text style={styles.textDescricao}>
+                        Digite seu CPF para iniciar o cadastro no aplicativo do GETRAN DF
+                    </Text>
+                    <TextInput
+                        selectionColor={'black'}
+                        style={styles.textInp}
+                        placeholder='DIGITE SEU CPF'
+                        value={usuario || ''}
+                        keyboardType={"numeric"}
+                        onChangeText={(usuario) => handlechange(usuario)}
+                        onBlur={(a) => handleLostFocus(a)}
                     />
-                </ImageBackground>
-            </View>
-            <View style={styles.containeFormMed}>
-                <Text style={styles.textTitulo}>
-                    Primeiro Acesso
-                </Text>
-                <Text style={styles.textDescricao}>
-                    Digite seu CPF para iniciar o cadastro no aplicativo do GETRAN DF
-                </Text>
-                <TextInput
-                    selectionColor={'black'}
-                    style={styles.textInp}
-                    placeholder='DIGITE SEU CPF'
-                    value={usuario || ''}
-                    keyboardType={"numeric"}
-                    onChangeText={(usuario) => handlechange(usuario)}
-                    onBlur={(a) => handleLostFocus(a)}
-                />
-                <TouchableOpacity
-                    style={Theme.button.primary}
-                    onPress={() => onClickIniciarCadastro()}
-                // disabled={true}
-                >
-                    <Text style={Theme.textButton}>INICIAR CADASTRO</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                    style={Theme.button.secundary}
-                    onPress={() => navigation.setParams({
-                        primAcess: false
-                    })}
-                >
-                    <Text style={Theme.textButton}>VOLTAR</Text>
-                </TouchableOpacity>
-            </View>
-        </View >
+                    <TouchableOpacity
+                        style={Theme.button.primary}
+                        onPress={() => onClickIniciarCadastro()}
+                    // disabled={true}
+                    >
+                        <Text style={Theme.textButton}>INICIAR CADASTRO</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={Theme.button.secundary}
+                        onPress={() => navigation.setParams({
+                            primAcess: false
+                        })}
+                    >
+                        <Text style={Theme.textButton}>VOLTAR</Text>
+                    </TouchableOpacity>
+                </View>
+            </View >
+        </KeyboardAvoidingView>
     );
 }
 
