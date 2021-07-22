@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { ImageBackground, StyleSheet, Text, TouchableOpacity, View, Image, TextInput, ActivityIndicator } from 'react-native';
+import { ImageBackground, StyleSheet, Text, TouchableOpacity, View, Image, TextInput, ActivityIndicator, KeyboardAvoidingView } from 'react-native';
 import CnpjUtils from "../Utils/CnpjUtils";
 import CpfUtils from '../Utils/CpfUtils';
 import roadImage from "../pages/assets/img/road.jpg";
@@ -235,100 +235,105 @@ export default function TelaInicial(props) {
     }
     else {
         return (
-            <View style={styles.container} >
+            <KeyboardAvoidingView
+                behavior={Platform.OS === "ios" ? "padding" : "height"}
+                style={styles.container}
+            >
+                <View style={styles.container} >
 
 
-                <View style={styles.containeImage}>
-                    <ImageBackground
-                        style={{
-                            alignSelf: "center",
-                            width: "100%",
-                            height: "100%",
-                            flex: 1,
-                        }}
-                        resizeMode="cover"
-                        source={roadImage}
-                    >
-                        <Image
+                    <View style={styles.containeImage}>
+                        <ImageBackground
                             style={{
                                 alignSelf: "center",
-                                marginTop: 60,
+                                width: "100%",
+                                height: "100%",
+                                flex: 1,
                             }}
-                            source={logoImage}
-                        />
-                    </ImageBackground>
-                </View>
-
-                <View style={styles.containeFormMed}>
-                    <Text style={styles.textTitulo}>
-                        Sistema de Gestão{'\n'}de Trânsito do DF
-                    </Text>
-
-
-                    <TextInput
-                        selectionColor={'black'}
-                        style={styles.textInp}
-                        placeholder='DIGITE SEU CPF'
-                        value={usuario || ''}
-                        keyboardType={"numeric"}
-                        onChangeText={(usuario) => handlechange(usuario)}
-                        onBlur={(a) => handleLostFocus(a)}
-                    />
-
-                    <TextInput
-                        selectionColor={'black'}
-                        style={styles.textInp}
-                        placeholder='SENHA'
-                        autoCorrect={false}
-                        autoCapitalize="none"
-                        secureTextEntry={true}
-                        onChangeText={(senha) => setSenha(senha)}
-                    />
-
-                    <TouchableOpacity
-                        style={Theme.button.primary}
-                        onPress={() => onClickIniciarCadastro()}
-                    >
-                        <Text style={Theme.textButton}>ENTRAR</Text>
-                    </TouchableOpacity>
-
-
-                    <View
-                        style={styles.containeTwoButtonText}
-                    >
-                        <TouchableOpacity
-                            onPress={() => navigation.setParams({
-                                primAcess: true
-                            })}
-                            style={{
-                                paddingTop: 10,
-                            }}
+                            resizeMode="cover"
+                            source={roadImage}
                         >
-                            <Text style={{
-                                // fontFamily: Theme.fonts.primaryBold,
-                                fontSize: 14,
-                                color: "#000",
-                                fontWeight: "bold",
-                            }}>PRIMEIRO ACESSO</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity
-                            onPress={() => navigation.navigate("MaisOpcoes")}
-                            style={{
-                                padding: 10,
-                                paddingEnd: 0
-                            }}
-                        >
-                            <Text style={{
-                                // fontFamily: Theme.fonts.primaryBold,
-                                fontSize: 14,
-                                color: "#000",
-                                fontWeight: "bold",
-                                textAlign: 'right'
-                            }}>MAIS OPÇÕES</Text>
-                        </TouchableOpacity>
+                            <Image
+                                style={{
+                                    alignSelf: "center",
+                                    marginTop: 60,
+                                }}
+                                source={logoImage}
+                            />
+                        </ImageBackground>
                     </View>
-                </View>
-            </View >
+
+                    <View style={styles.containeFormMed}>
+                        <Text style={styles.textTitulo}>
+                            Sistema de Gestão{'\n'}de Trânsito do DF
+                        </Text>
+
+
+                        <TextInput
+                            selectionColor={'black'}
+                            style={styles.textInp}
+                            placeholder='DIGITE SEU CPF'
+                            value={usuario || ''}
+                            keyboardType={"numeric"}
+                            onChangeText={(usuario) => handlechange(usuario)}
+                            onBlur={(a) => handleLostFocus(a)}
+                        />
+
+                        <TextInput
+                            selectionColor={'black'}
+                            style={styles.textInp}
+                            placeholder='SENHA'
+                            autoCorrect={false}
+                            autoCapitalize="none"
+                            secureTextEntry={true}
+                            onChangeText={(senha) => setSenha(senha)}
+                        />
+
+                        <TouchableOpacity
+                            style={Theme.button.primary}
+                            onPress={() => onClickIniciarCadastro()}
+                        >
+                            <Text style={Theme.textButton}>ENTRAR</Text>
+                        </TouchableOpacity>
+
+
+                        <View
+                            style={styles.containeTwoButtonText}
+                        >
+                            <TouchableOpacity
+                                onPress={() => navigation.setParams({
+                                    primAcess: true
+                                })}
+                                style={{
+                                    paddingTop: 10,
+                                }}
+                            >
+                                <Text style={{
+                                    // fontFamily: Theme.fonts.primaryBold,
+                                    fontSize: 14,
+                                    color: "#000",
+                                    fontWeight: "bold",
+                                }}>PRIMEIRO ACESSO</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity
+                                onPress={() => navigation.navigate("MaisOpcoes")}
+                                style={{
+                                    padding: 10,
+                                    paddingEnd: 0
+                                }}
+                            >
+                                <Text style={{
+                                    // fontFamily: Theme.fonts.primaryBold,
+                                    fontSize: 14,
+                                    color: "#000",
+                                    fontWeight: "bold",
+                                    textAlign: 'right'
+                                }}>MAIS OPÇÕES</Text>
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+                </View >
+            </KeyboardAvoidingView>
         );
     }
 }
