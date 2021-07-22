@@ -21,6 +21,7 @@ export default function MaisOpcoes(props) {
         setAlterarEmail(false)
     }
     return (
+       
         <View style={styles.container}>
             <GenericDialog
                 dialogClose={reenvioEmail}
@@ -102,6 +103,7 @@ export default function MaisOpcoes(props) {
                 </TouchableOpacity>
             </View>
         </View>
+        
     )
 }
 const styles = StyleSheet.create({
